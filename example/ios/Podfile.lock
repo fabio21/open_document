@@ -1,0 +1,28 @@
+PODS:
+  - Flutter (1.0.0)
+  - open_document (0.0.1):
+    - Flutter
+  - "permission_handler (4.4.0+hotfix.4)":
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - open_document (from `.symlinks/plugins/open_document/ios`)
+  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  open_document:
+    :path: ".symlinks/plugins/open_document/ios"
+  permission_handler:
+    :path: ".symlinks/plugins/permission_handler/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  open_document: 63eea128860263e68b67ef3b31f74a5ae22e4c71
+  permission_handler: 8278954f2382902f63f00dd8828769c0bd6d511b
+
+PODFILE CHECKSUM: c34e2287a9ccaa606aeceab922830efb9a6ff69a
+
+COCOAPODS: 1.9.3
