@@ -1,6 +1,9 @@
 # open_document
 
-A new flutter plugin project.
+Used to create a folder on the user's mobile phone;
+- Android stays inside documents with the name of your app;
+- iOs is in your app's name files
+
 
 ## Getting Started
 
@@ -26,7 +29,7 @@ samples, guidance on mobile development, and a full API reference.
      </paths>
   ------------------------------------------
 
-  Add AndroidManifest -->
+  Add AndroidManifest :
 
       <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
       <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -44,7 +47,7 @@ samples, guidance on mobile development, and a full API reference.
 
    -------------------------------------------
 
-   iOs config -> info.plist Add ->
+   iOs config -> info.plist Add
    Create folder em Document
    
      <key>LSSupportsOpeningDocumentsInPlace</key>
@@ -54,7 +57,7 @@ samples, guidance on mobile development, and a full API reference.
   
     final name = await OpenDocument.getName(url);
 
-    final path = await OpenDocument.getPathDocument("Julia");
+    final path = await OpenDocument.getPathDocument("YOUR APP");
 
     var filePath = "$path/$name";
 
@@ -69,3 +72,20 @@ samples, guidance on mobile development, and a full API reference.
     } on PlatformException catch (e) {
      debugPrint("ERROR: message_${e.message} ---- detail_${e.details}");
     }
+
+    Future<String> downloadFile({String filePath, String url}) async {
+    // CancelToken cancelToken = CancelToken();
+    Dio dio = new Dio();
+    await dio.download(
+      url,
+      filePath,
+      onReceiveProgress: (count, total) {
+        debugPrint('---Download----Rec: $count, Total: $total');
+        setState(() {
+          _platformVersion = ((count / total) * 100).toStringAsFixed(0) + "%";
+        });
+      },
+    );
+
+    return filePath;
+  }
