@@ -2,18 +2,19 @@
 import 'package:permission_handler/permission_handler.dart';
 
 class PermissionsService {
-  final PermissionHandler _permissionHandler = PermissionHandler();
+  late final Permission _permissionHandler;
 
-  Future<bool> _requestPermission(PermissionGroup permission) async {
-    var result = await _permissionHandler.requestPermissions([permission]);
-    if (result[permission] == PermissionStatus.granted) {
-      return true;
+  Future<bool> _requestPermission(Permission permission) async {
+    await permission.request();
+    var result = await permission.status;
+    if(result.isDenied){
+      Permission.storage.isGranted;
     }
-    return false;
+    return result.isGranted;
   }
 
   /// Requests the users permission to any when the app is in use
-  Future<bool> requestPermission(PermissionGroup permission, {Function onPermissionDenied}) async {
+  Future<bool> requestPermission(Permission permission, {required Function onPermissionDenied}) async {
     var granted = await _requestPermission(permission);
     if (!granted) {
       onPermissionDenied();
@@ -21,8 +22,8 @@ class PermissionsService {
     return granted;
   }
 
-  Future<bool> hasPermission(PermissionGroup permission) async {
-    var permissionStatus = await _permissionHandler.checkPermissionStatus(permission);
+  Future<bool> hasPermission(Permission permission) async {
+    var permissionStatus = await permission.status;
     return permissionStatus == PermissionStatus.granted;
   }
 

@@ -37,7 +37,7 @@ class OpenDocumentPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     this.flutterPluginBinding = flutterPluginBinding
-    channel = MethodChannel(flutterPluginBinding.flutterEngine.dartExecutor, "open_document")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "open_document")
     channel?.setMethodCallHandler(this)
   }
 
@@ -61,11 +61,14 @@ class OpenDocumentPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
       "getName" -> {
         getName(call.arguments as String, result)
       }
+      "getNameFolder" -> {
+        getNameFolder(result)
+      }
       "checkDocument" -> {
         checkDocument(call.arguments as String, result)
       }
       "openDocument" -> {
-        openDocument(call.arguments as String)
+        openDocument(call.arguments as String, result)
       }
       else -> {
         result.notImplemented()
@@ -78,7 +81,7 @@ class OpenDocumentPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
   }
 
   @RequiresApi(Build.VERSION_CODES.KITKAT)
-  fun openDocument(url: String) {
+  fun openDocument(url: String, result: Result) {
     try {
       val intent = Intent(Intent.ACTION_VIEW)
       intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -96,20 +99,23 @@ class OpenDocumentPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
       this.activity.startActivity(intent)
     } catch (e: ActivityNotFoundException) {
-      Log.d("RAQ_TESTE", "${e.message}")
+      e.printStackTrace()
+      result.error("Error", e.localizedMessage, "Open document failure")
       // Instruct the user to install a PDF reader here, or something
     }
   }
 
   @RequiresApi(Build.VERSION_CODES.KITKAT)
-  fun getPathDocument(folderName: String, @NonNull result: Result) {
-    val file = File(Environment.getExternalStorageDirectory().absolutePath + "/Documents/$folderName/")
+  fun getPathDocument(path: String?, @NonNull result: Result) {
+    val str = path ?: nameFolder()
+    val file = File(Environment.getExternalStorageDirectory().absolutePath + "/Documents/${str}/")
     try {
       if (!file.exists()) {
         file.mkdirs()
       }
     } catch (e: Exception) {
       e.printStackTrace()
+      result.error("Error", e.localizedMessage, "Get path document failure")
     }
     result.success(file.absolutePath)
   }
@@ -119,6 +125,14 @@ class OpenDocumentPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     result.success(name(url))
   }
 
+  private fun getNameFolder(@NonNull result: Result){
+    val name = nameFolder();
+    if(name.contains("NameFolder:"))
+      result.error("Error", name, "Get name app");
+    else
+    result.success(name)
+  }
+
   @RequiresApi(Build.VERSION_CODES.KITKAT)
   fun checkDocument(filePath: String, @NonNull result: Result) {
     val fileAlreadyExists = File(filePath)
@@ -126,6 +140,15 @@ class OpenDocumentPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
       result.success(true)
     } else {
       result.success(false)
+    }
+  }
+
+  private fun nameFolder(): String {
+  return try {
+      val app = activity.packageManager.getApplicationInfo(context.packageName, 0);
+     return activity.packageManager.getApplicationLabel(app).toString();
+    }catch(e: Exception){
+      "NameFolder: " + e.localizedMessage;
     }
   }
 

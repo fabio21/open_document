@@ -1,14 +1,17 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:open_document/my_files/init.dart';
 import 'package:open_document/open_document.dart';
 import 'package:open_document_example/permission_service.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:wakelock/wakelock.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(home: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -21,15 +24,22 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    Wakelock.enable();
     super.initState();
+    if(!Platform.isWindows)
     initCheckPermission();
+
     initPlatformState();
   }
 
   void initCheckPermission() async {
     final _handler = PermissionsService();
-    await _handler.requestPermission(PermissionGroup.storage,
-        onPermissionDenied: () => setState(() => debugPrint("")));
+    await _handler.requestPermission(
+      Permission.storage,
+      onPermissionDenied: () => setState(
+        () => debugPrint("Error: "),
+      ),
+    );
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -39,24 +49,27 @@ class _MyAppState extends State<MyApp> {
     //
     // Platform messages may fail, so we use a try/catch PlatformException.
     // "https://file-examples-com.github.io/uploads/2017/02/file_example_XLS_5000.xls";
-    final url =  "https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_500_kB.pdf";
+    final url =
+        "https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_500_kB.pdf";
     //"https://file-examples-com.github.io/uploads/2017/02/file_example_XLS_5000.xls";
-      //  "https://file-examples-com.github.io/uploads/2017/02/zip_10MB.zip";
+    //  "https://file-examples-com.github.io/uploads/2017/02/zip_10MB.zip";
 //
-    final name = await OpenDocument.getName(url);
+    final name = await OpenDocument.getName(url: url);
     debugPrint("Name:$name");
 
-    final path = await OpenDocument.getPathDocument("Julia");
+    final path = await OpenDocument.getPathDocument(folderName: "Julia");
     filePath = "$path/$name";
-//    debugPrint("Path:$filePath ->> ${await OpenDocument.checkDocument(path)}");
+    debugPrint("Path:$filePath");
 
-    final isCheck = await OpenDocument.checkDocument(filePath);
+    final isCheck = await OpenDocument.checkDocument(filePath: filePath);
     debugPrint("Exist: $isCheck");
     try {
       if (!isCheck) {
         filePath = await downloadFile(filePath: "$filePath", url: url);
       }
-      await OpenDocument.openDocument(filePath);
+      await OpenDocument.openDocument(
+        filePath: filePath,
+      );
       //filePath = isCheck.toString();
     } on PlatformException catch (e) {
       debugPrint("ERROR: message_${e.message} ---- detail_${e.details}");
@@ -73,6 +86,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    StyleMyFile.elevatedButtonText = "Compartilhar";
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -81,11 +95,16 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: Text('Running on: $_platformVersion\n'),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => _pushScreen(),
+          child: Icon(Icons.open_in_new),
+        ),
       ),
     );
   }
 
-  Future<String> downloadFile({String filePath, String url}) async {
+  Future<String> downloadFile(
+      {required String filePath, required String url}) async {
     // CancelToken cancelToken = CancelToken();
     Dio dio = new Dio();
     await dio.download(
@@ -100,5 +119,15 @@ class _MyAppState extends State<MyApp> {
     );
 
     return filePath;
+  }
+
+  _pushScreen() async {
+    String name = await OpenDocument.getNameFolder();
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => MyFilesScreen(filePath: name),
+      ),
+    );
   }
 }
