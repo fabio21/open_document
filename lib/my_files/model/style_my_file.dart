@@ -12,7 +12,7 @@ class StyleMyFile {
     color: Colors.white,
   );
 
-  static Color backgroundHeader = Colors.blue;
+  static Color backgroundHeader = Colors.blueGrey.shade500;
   static Color textColorHeader = Colors.white;
   static double heightHeader  = 50.0;
 
@@ -46,6 +46,15 @@ class StyleMyFile {
     padding: EdgeInsets.only(left: 14),
     child: Icon(
       Icons.folder,
+      color: Colors.black38,
+      size: 24,
+    ),
+  );
+
+  static Widget folderZip = Padding(
+    padding: EdgeInsets.only(left: 14),
+    child: Icon(
+      Icons.attach_file_rounded,
       color: Colors.black38,
       size: 24,
     ),

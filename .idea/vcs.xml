@@ -2,5 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/example/windows/flutter/ephemeral/.plugin_symlinks/open_document" vcs="Git" />
   </component>
 </project>

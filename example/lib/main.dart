@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
     //"https://file-examples-com.github.io/uploads/2017/02/file_example_XLS_5000.xls";
     //  "https://file-examples-com.github.io/uploads/2017/02/zip_10MB.zip";
 //
-    final name = await OpenDocument.getName(url: url);
+    final name = await OpenDocument.getNameFile(url: url);
     debugPrint("Name:$name");
 
     final path = await OpenDocument.getPathDocument(folderName: "Julia");
@@ -122,7 +122,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   _pushScreen() async {
-    String name = await OpenDocument.getNameFolder();
+    String name = await OpenDocument.getNameFolder(widowsFolder: "Julia");
 
     Navigator.of(context).push(
       MaterialPageRoute(

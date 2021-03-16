@@ -37,7 +37,7 @@ class MyFilesItems extends StatelessWidget {
         child: Row(
           children: [
             if (isShare && !isDirectory) buildContainerRadius(),
-            buildIcon(isDirectory),
+            buildIcon(isDirectory, isZipFile),
             buildItemTitleAndSubtitle(title),
             if (isDirectory) StyleMyFile.buildNavigationIcon,
           ],
@@ -56,13 +56,13 @@ class MyFilesItems extends StatelessWidget {
 
   actionDecision(bool isDirectory, bool isZipFile) {
     if (isShare && !isDirectory)
-      onShared(item);
+     return onShared(item);
     else if (isDirectory)
-      onPushScreen(item.path);
+     return onPushScreen(item.path);
     else if (isZipFile)
-      onUnzipFile(item.path);
+     return onUnzipFile(item.path);
     else
-      onOpenDocument(item.path);
+      return onOpenDocument(item.path);
   }
 
   Widget buildItemTitleAndSubtitle(String title) {
@@ -86,8 +86,13 @@ class MyFilesItems extends StatelessWidget {
     );
   }
 
-  buildIcon(bool isDirectory) {
-    return isDirectory ? StyleMyFile.folder : StyleMyFile.description;
+  buildIcon(bool isDirectory, bool isZipFile) {
+    if(isDirectory)
+      return StyleMyFile.folder;
+    else if(isZipFile)
+      return StyleMyFile.folderZip;
+    else
+    return StyleMyFile.description;
   }
 
 

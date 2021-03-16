@@ -1,67 +1,65 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:open_document/windows_fun.dart';
+import 'package:path_provider_windows/path_provider_windows.dart';
 
 class OpenDocument {
-  static const MethodChannel _channel =
-  const MethodChannel('open_document');
+  static const MethodChannel _channel = const MethodChannel('open_document');
 
   static Future<void> openDocument({required String filePath}) async {
     try {
-      await _channel.invokeMethod('openDocument', filePath);
-    }on PlatformException catch (e) {
+      if (Platform.isWindows) return await openDocumentWindows(path: filePath);
+     return await _channel.invokeMethod('openDocument', filePath);
+    } on PlatformException catch (e) {
       throw OpenDocumentException(e.stacktrace.toString());
     }
   }
 
   static Future<String> getPathDocument({required String folderName}) async {
     try {
-      final String path = await _channel.invokeMethod('getPathDocument', folderName);
-      return path;
-    }on PlatformException catch (e) {
-      throw OpenDocumentException(e.stacktrace.toString());
-    }
-
-  }
-
-  static Future<String> getNameFolder() async {
-    try {
-         final String path = await _channel.invokeMethod('getNameFolder');
-         return path;
-    }on PlatformException catch (e) {
-      throw OpenDocumentException(e.stacktrace.toString());
-    }
-  }
-
-  static Future<String> getName({required String url}) async {
-    try {
-      if(Platform.isWindows){
-       return url.split("/").last;
-      }else {
-        final String str = await _channel.invokeMethod('getName', url);
-        return str;
-      }
+      if (Platform.isWindows)
+        return await getPathFolderWindows(folder: folderName);
+      return await _channel.invokeMethod('getPathDocument', folderName);
     } on PlatformException catch (e) {
       throw OpenDocumentException(e.stacktrace.toString());
+    }
   }
+
+  static Future<String> getNameFolder({String? widowsFolder}) async {
+    try {
+      if (Platform.isWindows) return widowsFolder ?? "";
+      return await _channel.invokeMethod('getNameFolder');
+    } on PlatformException catch (e) {
+      throw OpenDocumentException(e.stacktrace.toString());
+    }
+  }
+
+  static Future<String> getNameFile({required String url}) async {
+    try {
+      if (Platform.isWindows) return url.split("/").last;
+      return await _channel.invokeMethod('getName', url);
+    } on PlatformException catch (e) {
+      throw OpenDocumentException(e.stacktrace.toString());
+    }
   }
 
   static Future<bool> checkDocument({required String filePath}) async {
     try {
-      final bool str = await _channel.invokeMethod('checkDocument', filePath);
-      return str;
+      if (Platform.isWindows) return await hasFolderWindows(path: filePath);
+      return await _channel.invokeMethod('checkDocument', filePath);
     } on PlatformException catch (e) {
       throw OpenDocumentException(e.stacktrace.toString());
     }
   }
-
 }
 
 
 
-
 class OpenDocumentException implements Exception {
- final String errorMessage;
+  final String errorMessage;
+
   OpenDocumentException(this.errorMessage);
 }

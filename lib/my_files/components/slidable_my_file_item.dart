@@ -44,7 +44,7 @@ class SlidableMyFileItem extends StatelessWidget {
         date: date,
         isShare: isShare,
         onPushScreen: (String path) => pushScreen(path),
-        onUnzipFile: (String path) =>  ExtractZip(path: path, lastPath: lastPath, updateFilesList: updateFilesList()),
+        onUnzipFile: onUnzipFile,
         onOpenDocument: (String path) => openDocument(path),
         onShared: (file) => onShared(file),
       ),
@@ -60,12 +60,16 @@ class SlidableMyFileItem extends StatelessWidget {
     );
   }
 
+  onUnzipFile(String path) => extractZip(path: path, lastPath: lastPath, updateFilesList: () => onStateRemove());
+
+  onStateRemove(){
+    updateFilesList();
+  }
+
   openDocument(String path) async {
-    // if (Platform.isWindows) {
-    //   return await _getTypeArchive(path);
-    // } else {
+
       return OpenDocument.openDocument(filePath: path);
-    // }
+
   }
 
   checkDeletingFiles(BuildContext context, String path, bool isDirectory) {

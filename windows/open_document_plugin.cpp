@@ -14,6 +14,17 @@
 #include <memory>
 #include <sstream>
 
+#include <shlobj.h>
+#include <string.h>
+#include <Shlwapi.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "include/open_document/filesystem.hpp" 
+#include <iostream>               // for std::cout
+
+#pragma comment(lib, "shell32.lib")
+
+
 namespace {
 
 class OpenDocumentPlugin : public flutter::Plugin {
@@ -29,7 +40,6 @@ class OpenDocumentPlugin : public flutter::Plugin {
   void HandleMethodCall(
       const flutter::MethodCall<flutter::EncodableValue> &method_call,
       std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result);
-  void getPathDocument();
 };
 
 // static
@@ -57,36 +67,36 @@ OpenDocumentPlugin::~OpenDocumentPlugin() {}
 void OpenDocumentPlugin::HandleMethodCall(
     const flutter::MethodCall<flutter::EncodableValue> &method_call,
     std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
-    if (method_call.method_name.compare("getPathDocument")) {
-        GetPathDocument(method_call.arguments(), result);
-    }
-    else if (method_call.method_name.compare("getName")) {
-        result->Success(flutter::GetModuleFileName());
-    }
-    else if (method_call.method_name.compare("checkDocument")) {
-        CHAR my_documents[MAX_PATH];
-        HRESULT h_result = SHGetFolderPath(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, my_documents);
-        result->Success(flutter::(h_result != S_OK);
-    }
-    else if (method_call.method_name.compare("getNameFolder")) {
-      result->Success(flutter::GetModuleFileName());
-    }
-    else if (method_call.method_name.compare("openDocument")) {
-        result->Success(flutter::GetModuleFileName());
-    }
 
-}
-
-void OpenDocumentPlugin::GetPathDocument(string::str, const std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result)
-    CHAR my_documents[MAX_PATH];
-    HRESULT h_result = SHGetFolderPath(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, my_documents);
-    if (h_result != S_OK) {
-        result->Success(h_result +"\\"+ str)
+    if (method_call.method_name().compare("getPathDocument") == 0) {
+        std::ostringstream version_stream;
+        std::filesystem::current_path();
+        version_stream << filesytem;
+        result->Success(flutter::EncodableValue(version_stream.str()));
     }
     else {
-        result->Error("Error: " << h_result << "\n")
+        result->NotImplemented();
     }
 }
+
+
+ std::string GetWorkingDirectory()
+{
+     try {
+         char my_documents[MAX_PATH];
+         HRESULT h_result = SHGetFolderPath(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, my_documents);
+
+         if (h_result != S_OK) {
+            return std::string(my_documents));
+         }
+         else {
+             return std::string(my_documents));
+         }
+     }cath(e) {
+         return "ERORORORORO";
+     }
+}
+
 
 }  // namespace
 

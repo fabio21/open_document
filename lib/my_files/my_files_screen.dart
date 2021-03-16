@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:open_document/my_files/components/slidable_my_file_item.dart';
 import 'package:open_document/my_files/model/style_my_file.dart';
 import 'package:open_document/open_document.dart';
-import 'package:path_provider_windows/path_provider_windows.dart';
 import 'package:share/share.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import 'init.dart';
 
 class MyFilesScreen extends StatefulWidget {
@@ -149,32 +146,17 @@ class _MyFilesScreenState extends State<MyFilesScreen>
     return widgets;
   }
 
-  Future<String> getFolderPath({String pathStr = ""}) async {
-    final PathProviderWindows provider = PathProviderWindows();
-    final path = await provider.getApplicationDocumentsPath();
-    var str = pathStr.isEmpty ? '${path}/${widget.filePath}' : pathStr;
-    final Directory _appDocDirFolder = Directory(str);
-    if (await _appDocDirFolder.exists()) {
-      return _appDocDirFolder.path;
-    }
-    final Directory _appDocDirNewFolder =
-        await _appDocDirFolder.create(recursive: true);
-    return _appDocDirNewFolder.path;
-  }
+
 
   Future<List<FileSystemEntity>> getDocumentPath() async {
     var files = <FileSystemEntity>[];
     var completer = new Completer<List<FileSystemEntity>>();
     String path = '';
-    var nameApp = await OpenDocument.getNameFolder();
+    String nameApp = await OpenDocument.getNameFolder(widowsFolder: "Julia");
     if (widget.filePath != nameApp) {
       path = widget.filePath;
     } else {
-      // if (Platform.isWindows) {
-      //   path = await getFolderPath();
-      // } else {
         path = await OpenDocument.getPathDocument(folderName: widget.filePath);
-     // }
     }
 
     Directory dir = new Directory(path);
@@ -245,43 +227,4 @@ class _MyFilesScreenState extends State<MyFilesScreen>
     Share.shareFiles(selectedFiles);
   }
 
-  _openWindows(String filePath) async {
-    if (await canLaunch(filePath)) {
-      await launch(filePath);
-    } else {
-      throw 'Could not launch $filePath';
-    }
-  }
-
-  _getTypeArchive(String path) async {
-    var type = path.split(".").last;
-    try {
-      String pathValue = getPathOpenDocument(type);
-      Process.run(pathValue, [path]).then((ProcessResult results) {
-        debugPrint(results.stdout);
-      });
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
-
-  String getPathOpenDocument(String type) {
-    switch (type) {
-      case "pptx":
-      case "ppt":
-        return 'C:\\Program Files\\Microsoft Office\\root\\Office16\\POWERPNT.EXE';
-      case "zip":
-        return 'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\WinRAR.exe a';
-      case "pdf":
-        return 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
-      case "xls":
-      case "xlsx":
-        return 'C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.EXE';
-      case "docx":
-      case "doc":
-        return 'C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE';
-      default:
-        return "";
-    }
-  }
 }
