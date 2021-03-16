@@ -28,5 +28,18 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>application needs Documents access</string>
+	<key>NSFileProviderDomainUsageDescription</key>
+	<string>application needs documents acess</string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>true</string>
+	</array>
 </dict>
 </plist>
