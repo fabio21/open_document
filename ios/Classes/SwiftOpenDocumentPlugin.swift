@@ -17,6 +17,8 @@ public class SwiftOpenDocumentPlugin: NSObject, FlutterPlugin {
             getPathDocument(call.arguments as! String, result: result)
         }else if call.method == "getName"{
             getName(call.arguments as! String, result: result)
+        }else if call.method == "getNameFolder"{
+            getNameFolder(result: result)
         }else if call.method == "checkDocument"{
             checkDocument((call.arguments as? String)!, result: result)
         }else if call.method == "openDocument"{
@@ -53,6 +55,13 @@ public class SwiftOpenDocumentPlugin: NSObject, FlutterPlugin {
         }
         result(fileNameToDelete)
     }
+    
+    //MARK: - getNameFolder
+    public func getNameFolder(result: @escaping FlutterResult){
+        let fileNameToDelete = Bundle.main.infoDictionary!["CFBundleName"] as! String        
+        result(fileNameToDelete)
+    }
+    
     
     //MARK: - checkDocument
     public func checkDocument(_ filePath:String, result: @escaping FlutterResult){

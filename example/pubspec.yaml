@@ -2,6 +2,7 @@ name: open_document_example
 description: Demonstrates how to use the open_document plugin.
 homepage: https://github.com/fabio21/open_document.git
 repository: https://github.com/fabio21/open_document.git
+version: 0.0.1
 
 publish_to: 'none'
 

@@ -29,6 +29,8 @@ flutter:
         pluginClass: OpenDocumentPlugin
       ios:
         pluginClass: OpenDocumentPlugin
+      macos:
+        pluginClass: OpenDocumentPlugin
 
 
 

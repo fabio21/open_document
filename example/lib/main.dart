@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     Wakelock.enable();
     super.initState();
-    if(!Platform.isWindows)
+    if(!Platform.isWindows && !Platform.isMacOS)
     initCheckPermission();
 
     initPlatformState();
