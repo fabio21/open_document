@@ -1,25 +1,19 @@
 # open_document
 
-Used to create a folder on the user's mobile phone;
-- Android stays inside documents with the name of your app;
-- iOs is in your app's name files
+Used to create a folder on the user's mobile phone and Desktop;
 
+- Android stays inside documents with the name of your app
+- iOs is in your app's name files
+- Windows Documents
+
+---
+## Opening pdf, xlsx, docs, ppt and zip files
+---
 
 ## Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
-
-
- Android ->> config
- res -> create folder -> xml ->
- create provider_paths.xml
+***Android ->> config res -> create folder -> xml -> create provider_paths.xml***
 
     <?xml version="1.0" encoding="utf-8"?>
      <paths>
@@ -27,9 +21,10 @@ samples, guidance on mobile development, and a full API reference.
          name="external_files"
          path="." />
      </paths>
-  ------------------------------------------
 
-  Add AndroidManifest :
+---
+
+***Add AndroidManifest :***
 
       <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
       <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -45,47 +40,75 @@ samples, guidance on mobile development, and a full API reference.
                 android:resource="@xml/provider_paths" />
         </provider>
 
-   -------------------------------------------
+---
 
-   iOs config -> info.plist Add
-   Create folder em Document
-   
+***iOs config -> info.plist Add***
+Create folder em Document
+
      <key>LSSupportsOpeningDocumentsInPlace</key>
         <true/>
 
-   USED ->
-  
-    final name = await OpenDocument.getName(url);
+### USED ->
 
-    final path = await OpenDocument.getPathDocument("YOUR APP");
+    final name = await OpenDocument.getNameFile(url: url);
 
-    var filePath = "$path/$name";
+    final path = await OpenDocument.getPathDocument(folderName: "example");
 
-    final isCheck = await OpenDocument.checkDocument(filePath);
+    filePath = "$path/$name";
 
-    if (!isCheck) {
-      filePath = await downloadFile(filePath: "$filePath", url: url);
-    }
+    final isCheck = await OpenDocument.checkDocument(filePath: filePath);
 
     try {
-     await OpenDocument.openDocument(filePath);
+      if (!isCheck) {
+        filePath = await downloadFile(filePath: "$filePath", url: url);
+      }
+
+    await OpenDocument.openDocument(filePath: filePath);
+
     } on PlatformException catch (e) {
-     debugPrint("ERROR: message_${e.message} ---- detail_${e.details}");
+      debugPrint("ERROR: message_${e.message} ---- detail_${e.details}");
     }
 
     Future<String> downloadFile({String filePath, String url}) async {
-    // CancelToken cancelToken = CancelToken();
-    Dio dio = new Dio();
-    await dio.download(
-      url,
-      filePath,
-      onReceiveProgress: (count, total) {
-        debugPrint('---Download----Rec: $count, Total: $total');
-        setState(() {
-          _platformVersion = ((count / total) * 100).toStringAsFixed(0) + "%";
-        });
-      },
-    );
+        // CancelToken cancelToken = CancelToken();
+      Dio dio = new Dio();
+        await dio.download(
+          url,
+          filePath,
+          onReceiveProgress: (count, total) {
+            debugPrint('---Download----Rec: $count, Total: $total');
+            setState(() {
+              _platformVersion = ((count / total) * 100).toStringAsFixed(0) + "%";
+            });
+        },
+      );
 
-    return filePath;
-  }
+      return filePath;
+    }
+
+
+## How to access the folder created with the files and view and delete:
+
+With ***StyleFile*** you can change some settings
+of Viewing Your Screen with Your Files
+
+### StyleMyFile.elevatedButtonText = "Compartilhar";
+
+***Call preview screen***
+
+---
+
+    pushScreen() async {
+      String name = await OpenDocument.getNameFolder(widowsFolder: "Example");
+
+        Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => MyFilesScreen(filePath: name),
+        ),
+      );
+    }
+
+---
+
+<img src="https://github.com/fabio21/image_readme/blob/master/view_openFile.png?raw=true"
+     style="float: left; margin-right: 10px;" />

@@ -55,13 +55,12 @@ class _MyAppState extends State<MyApp> {
     //  "https://file-examples-com.github.io/uploads/2017/02/zip_10MB.zip";
 //
     final name = await OpenDocument.getNameFile(url: url);
-    debugPrint("Name:$name");
 
-    final path = await OpenDocument.getPathDocument(folderName: "Julia");
+    final path = await OpenDocument.getPathDocument(folderName: "example");
     filePath = "$path/$name";
-    debugPrint("Path:$filePath");
 
     final isCheck = await OpenDocument.checkDocument(filePath: filePath);
+
     debugPrint("Exist: $isCheck");
     try {
       if (!isCheck) {
@@ -70,15 +69,12 @@ class _MyAppState extends State<MyApp> {
       await OpenDocument.openDocument(
         filePath: filePath,
       );
-      //filePath = isCheck.toString();
+
     } on PlatformException catch (e) {
       debugPrint("ERROR: message_${e.message} ---- detail_${e.details}");
       filePath = 'Failed to get platform version.';
     }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
     setState(() {
       _platformVersion = filePath;
     });
