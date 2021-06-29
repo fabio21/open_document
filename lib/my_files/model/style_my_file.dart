@@ -12,6 +12,8 @@ class StyleMyFile {
     color: Colors.white,
   );
 
+  static String nameFolderDocumentWindows = "Julia";
+
   static Color backgroundHeader = Colors.blueGrey.shade500;
   static Color textColorHeader = Colors.white;
   static double heightHeader  = 50.0;
@@ -82,7 +84,8 @@ class StyleMyFile {
   static IconSlideActionModel iconSlideActionModel = IconSlideActionModel(
       color: Colors.red.shade900,
       icon: Icons.delete,
-      foregroundColor: Colors.white);
+      foregroundColor: Colors.white,
+  );
 
   static OutlinedBorder elevatedButtonShape = RoundedRectangleBorder(
   borderRadius: new BorderRadius.circular(16.0),
@@ -95,6 +98,11 @@ class StyleMyFile {
   static double elevatedButtonTextStyleFontSize = 16.0;
   static String elevatedButtonTextCancel = "Cancel";
   static String elevatedButtonText = "Share";
+
+  static Color checkBoxBorder =  Colors.black26;
+  static Color checkBoxBackground = Colors.black12;
+  static Color checkBoxIconColorActive =  Colors.lightBlue;
+  static Color checkBoxIconColorNotActive =  Colors.transparent;
 
   StyleMyFile._internal();
 }

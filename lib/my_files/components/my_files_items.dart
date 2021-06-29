@@ -115,8 +115,8 @@ class MyFilesItems extends StatelessWidget {
 
   BoxDecoration buildBoxDecorationChecked() {
     return BoxDecoration(
-      border: Border.all(color: Colors.black26, width: 0.5),
-      color: Colors.black12,
+      border: Border.all(color: StyleMyFile.checkBoxBorder , width: 0.5),
+      color: StyleMyFile.checkBoxBackground,
     );
   }
 
@@ -125,7 +125,7 @@ class MyFilesItems extends StatelessWidget {
       child: Icon(
         Icons.check,
         size: 24,
-        color: isChecked ? Colors.lightBlue : Colors.transparent,
+        color: isChecked ? StyleMyFile.checkBoxIconColorActive : StyleMyFile.checkBoxIconColorNotActive,
       ),
     );
   }

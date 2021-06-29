@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:open_document/my_files/components/slidable_my_file_item.dart';
 import 'package:open_document/my_files/model/style_my_file.dart';
 import 'package:open_document/open_document.dart';
@@ -77,14 +78,21 @@ class _MyFilesScreenState extends State<MyFilesScreen>
       centerTitle: false,
       titleSpacing: 0,
       elevation: Platform.isAndroid ? 8.0 : 0,
-      actions: [
-        IconButton(
+      actions: decision() ? [
+          IconButton(
           padding: EdgeInsets.only(right: 24),
           icon: StyleMyFile.appBarShare,
           onPressed: () => openSelection(),
         ),
-      ],
+      ] : null,
     );
+  }
+
+ bool decision(){
+    if(Platform.isWindows) return false;
+    if(Platform.isLinux) return false;
+
+    return true;
   }
 
   Widget body(BuildContext context) {
@@ -146,17 +154,16 @@ class _MyFilesScreenState extends State<MyFilesScreen>
     return widgets;
   }
 
-
-
   Future<List<FileSystemEntity>> getDocumentPath() async {
     var files = <FileSystemEntity>[];
     var completer = new Completer<List<FileSystemEntity>>();
     String path = '';
-    String nameApp = await OpenDocument.getNameFolder(widowsFolder: "Julia");
+    String nameApp = await OpenDocument.getNameFolder(
+        widowsFolder: StyleMyFile.nameFolderDocumentWindows);
     if (widget.filePath != nameApp) {
       path = widget.filePath;
     } else {
-        path = await OpenDocument.getPathDocument(folderName: widget.filePath);
+      path = await OpenDocument.getPathDocument(folderName: widget.filePath);
     }
 
     Directory dir = new Directory(path);
@@ -196,7 +203,6 @@ class _MyFilesScreenState extends State<MyFilesScreen>
     );
   }
 
-
   updateFilesList() {
     setState(() {
       lastPaths.removeLast();
@@ -219,12 +225,19 @@ class _MyFilesScreenState extends State<MyFilesScreen>
     }
   }
 
-  void shareFiles() {
+  void shareFiles() async {
     List<String> selectedFiles = [];
     CustomFileSystemEntity().map.forEach((key, value) {
       if (value) selectedFiles.add(key.path);
     });
-    Share.shareFiles(selectedFiles);
-  }
 
+      try {
+        if (!Platform.isWindows || Platform.isLinux)
+        Share.shareFiles(selectedFiles);
+
+      } on PlatformException catch (e) {
+        debugPrint("${e.message}");
+      }
+
+  }
 }
