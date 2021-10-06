@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 4.0.0">
+  <meta name="description" content="open_document API docs, for the Dart programming language.">
+  <title>open_document - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href=""
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://github.com/fabio21/open_document.git">open_document package</a></li>
+  </ol>
+  <div class="self-name">open_document</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="open_document">open_document</h1>
+<p>Used to create a folder on the user's mobile phone and Desktop;</p>
+<ul>
+<li>Android stays inside documents with the name of your app</li>
+<li>iOs is in your app's name files</li>
+<li>Windows Documents</li>
+</ul>
+<hr>
+<h2 id="opening-pdf-xlsx-docs-ppt-and-zip-files">Opening pdf, xlsx, docs, ppt and zip files</h2>
+<hr>
+<h2 id="getting-started">Getting Started</h2>
+<p><em><strong>Android -&gt;&gt; config res -&gt; create folder -&gt; xml -&gt; create provider_paths.xml</strong></em></p>
+<pre class="language-dart"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+ &lt;paths&gt;
+   &lt;external-path
+     name="external_files"
+     path="." /&gt;
+ &lt;/paths&gt;
+</code></pre>
+<hr>
+<p><em><strong>Add AndroidManifest :</strong></em></p>
+<pre class="language-dart"><code>  &lt;uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /&gt;
+  &lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt;
+  &lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+
+&lt;provider
+        android:name="androidx.core.content.FileProvider"
+        android:authorities="com.example.open_document_example.fileprovider"
+        android:exported="false"
+        android:grantUriPermissions="true"&gt;
+        &lt;meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/provider_paths" /&gt;
+    &lt;/provider&gt;
+</code></pre>
+<hr>
+<p><em><strong>iOs config -&gt; info.plist Add</strong></em>
+Create folder em Document</p>
+<pre class="language-dart"><code> &lt;key&gt;LSSupportsOpeningDocumentsInPlace&lt;/key&gt;
+    &lt;true/&gt;
+</code></pre>
+<h3 id="used--">USED -&gt;</h3>
+<pre class="language-dart"><code>final name = await OpenDocument.getNameFile(url: url);
+
+final path = await OpenDocument.getPathDocument(folderName: "example");
+
+filePath = "$path/$name";
+
+final isCheck = await OpenDocument.checkDocument(filePath: filePath);
+
+try {
+  if (!isCheck) {
+    filePath = await downloadFile(filePath: "$filePath", url: url);
+  }
+
+await OpenDocument.openDocument(filePath: filePath);
+
+} on PlatformException catch (e) {
+  debugPrint("ERROR: message_${e.message} ---- detail_${e.details}");
+}
+
+Future&lt;String&gt; downloadFile({String filePath, String url}) async {
+    // CancelToken cancelToken = CancelToken();
+  Dio dio = new Dio();
+    await dio.download(
+      url,
+      filePath,
+      onReceiveProgress: (count, total) {
+        debugPrint('---Download----Rec: $count, Total: $total');
+        setState(() {
+          _platformVersion = ((count / total) * 100).toStringAsFixed(0) + "%";
+        });
+    },
+  );
+
+  return filePath;
+}
+</code></pre>
+<h2 id="how-to-access-the-folder-created-with-the-files-and-view-and-delete">How to access the folder created with the files and view and delete:</h2>
+<p>With <em><strong>StyleFile</strong></em> you can change some settings
+of Viewing Your Screen with Your Files</p>
+<h3 id="stylemyfileelevatedbuttontext--compartilhar">StyleMyFile.elevatedButtonText = "Compartilhar";</h3>
+<p><em><strong>Call preview screen</strong></em></p>
+<hr>
+<pre class="language-dart"><code>pushScreen() async {
+  String name = await OpenDocument.getNameFolder(widowsFolder: "Example");
+
+    Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) =&gt; MyFilesScreen(filePath: name),
+    ),
+  );
+}
+</code></pre>
+<hr>
+<p><img src="https://github.com/fabio21/image_readme/blob/master/view_openFile.png?raw=true" style="float: left; margin-right: 10px;"></p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="alert_customized_for_decisions">
+  <span class="name"><a href="my_files_components_alert_customized_for_decisions/my_files_components_alert_customized_for_decisions-library.html">alert_customized_for_decisions</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="button_share_confirm_cancel">
+  <span class="name"><a href="my_files_components_button_share_confirm_cancel/my_files_components_button_share_confirm_cancel-library.html">button_share_confirm_cancel</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="custom_file_system_entity">
+  <span class="name"><a href="my_files_model_custom_file_system_entity/my_files_model_custom_file_system_entity-library.html">custom_file_system_entity</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="extract_zip">
+  <span class="name"><a href="my_files_model_extract_zip/my_files_model_extract_zip-library.html">extract_zip</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="header_my_folder_file">
+  <span class="name"><a href="my_files_components_header_my_folder_file/my_files_components_header_my_folder_file-library.html">header_my_folder_file</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="init_my_files">
+  <span class="name"><a href="init_my_files/init_my_files-library.html">init_my_files</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="my_files_core">
+  <span class="name"><a href="my_files_components_my_files_core/my_files_components_my_files_core-library.html">my_files_core</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="my_files_dialog">
+  <span class="name"><a href="my_files_components_my_files_dialog/my_files_components_my_files_dialog-library.html">my_files_dialog</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="my_files_items">
+  <span class="name"><a href="my_files_components_my_files_items/my_files_components_my_files_items-library.html">my_files_items</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="my_files_screen">
+  <span class="name"><a href="my_files_my_files_screen/my_files_my_files_screen-library.html">my_files_screen</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="open_document">
+  <span class="name"><a href="open_document/open_document-library.html">open_document</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="slidable_my_file_item">
+  <span class="name"><a href="my_files_components_slidable_my_file_item/my_files_components_slidable_my_file_item-library.html">slidable_my_file_item</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="style_my_file">
+  <span class="name"><a href="my_files_model_style_my_file/my_files_model_style_my_file-library.html">style_my_file</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="windows_fun">
+  <span class="name"><a href="windows_fun/windows_fun-library.html">windows_fun</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+        </dl>
+      </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="https://github.com/fabio21/open_document.git">open_document package</a></li>
+</ol>
+
+
+    <h5 class="hidden-xs"><span class="package-name">open_document</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="my_files_components_alert_customized_for_decisions/my_files_components_alert_customized_for_decisions-library.html">alert_customized_for_decisions</a></li>
+      <li><a href="my_files_components_button_share_confirm_cancel/my_files_components_button_share_confirm_cancel-library.html">button_share_confirm_cancel</a></li>
+      <li><a href="my_files_model_custom_file_system_entity/my_files_model_custom_file_system_entity-library.html">custom_file_system_entity</a></li>
+      <li><a href="my_files_model_extract_zip/my_files_model_extract_zip-library.html">extract_zip</a></li>
+      <li><a href="my_files_components_header_my_folder_file/my_files_components_header_my_folder_file-library.html">header_my_folder_file</a></li>
+      <li><a href="init_my_files/init_my_files-library.html">init_my_files</a></li>
+      <li><a href="my_files_components_my_files_core/my_files_components_my_files_core-library.html">my_files_core</a></li>
+      <li><a href="my_files_components_my_files_dialog/my_files_components_my_files_dialog-library.html">my_files_dialog</a></li>
+      <li><a href="my_files_components_my_files_items/my_files_components_my_files_items-library.html">my_files_items</a></li>
+      <li><a href="my_files_my_files_screen/my_files_my_files_screen-library.html">my_files_screen</a></li>
+      <li><a href="open_document/open_document-library.html">open_document</a></li>
+      <li><a href="my_files_components_slidable_my_file_item/my_files_components_slidable_my_file_item-library.html">slidable_my_file_item</a></li>
+      <li><a href="my_files_model_style_my_file/my_files_model_style_my_file-library.html">style_my_file</a></li>
+      <li><a href="windows_fun/windows_fun-library.html">windows_fun</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    open_document
+      1.0.2+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+
