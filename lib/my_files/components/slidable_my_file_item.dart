@@ -34,10 +34,22 @@ class SlidableMyFileItem extends StatelessWidget {
     bool isDirectory = file.statSync().type.toString() == 'directory';
     return Slidable(
       key: Key(file.path),
-      actionPane: SlidableDrawerActionPane(key: UniqueKey()),
-      dismissal: SlidableDismissal(
-        dragDismissible: false,
-        child: SlidableDrawerDismissal(),
+      startActionPane: ActionPane(
+        key: UniqueKey(),
+        motion: const ScrollMotion(),
+        dismissible: DismissiblePane(
+          onDismissed: () => StyleMyFile.iconSlideActionModel.closeOnTap,
+        ),
+        children: [
+          SlidableAction(
+            backgroundColor:
+                StyleMyFile.iconSlideActionModel.color ?? Color(0xFFFE4A49),
+            onPressed: (_) =>
+                checkDeletingFiles(context, file.path, isDirectory),
+            icon: StyleMyFile.iconSlideActionModel.icon,
+            foregroundColor: StyleMyFile.iconSlideActionModel.foregroundColor,
+          ),
+        ],
       ),
       child: MyFilesItems(
         item: file,
@@ -48,28 +60,18 @@ class SlidableMyFileItem extends StatelessWidget {
         onOpenDocument: (String path) => openDocument(path),
         onShared: (file) => onShared(file),
       ),
-      actions: [
-        IconSlideAction(
-          color: StyleMyFile.iconSlideActionModel.color,
-          closeOnTap: StyleMyFile.iconSlideActionModel.closeOnTap,
-          onTap: () => checkDeletingFiles(context, file.path, isDirectory),
-          icon: StyleMyFile.iconSlideActionModel.icon,
-          foregroundColor: StyleMyFile.iconSlideActionModel.foregroundColor,
-        ),
-      ],
     );
   }
 
-  onUnzipFile(String path) => extractZip(path: path, lastPath: lastPath, updateFilesList: () => onStateRemove());
+  onUnzipFile(String path) => extractZip(
+      path: path, lastPath: lastPath, updateFilesList: () => onStateRemove());
 
-  onStateRemove(){
+  onStateRemove() {
     updateFilesList();
   }
 
   openDocument(String path) async {
-
-      return OpenDocument.openDocument(filePath: path);
-
+    return OpenDocument.openDocument(filePath: path);
   }
 
   checkDeletingFiles(BuildContext context, String path, bool isDirectory) {
@@ -86,29 +88,38 @@ class SlidableMyFileItem extends StatelessWidget {
     );
   }
 
-  void onPressed(BuildContext context, String path, bool isDirectory, ) {
+  void onPressed(
+    BuildContext context,
+    String path,
+    bool isDirectory,
+  ) {
     onDeleteFile(context, path, isDirectory);
     Navigator.of(context).pop();
   }
 
-  void onDeleteFile(BuildContext context,String path, bool isDirectory) async {
+  void onDeleteFile(BuildContext context, String path, bool isDirectory) async {
     var document = isDirectory ? Directory(path) : File(path);
     await document
         .delete(recursive: true)
         .then(
-          (value) => createSnackBar(context,
-        message: StyleMyFile.snackBarSuccessfullyDeleted,
-        backgroundColor: StyleMyFile.snackBarSuccessColor,
-      ),
-    ).catchError(
-          (error) => createSnackBar(context,
-        message: StyleMyFile.snackBarDeletingError,
-        backgroundColor: StyleMyFile.snackBarErrorColor,
-      ),
-    ).whenComplete(() => updateFilesList());
+          (value) => createSnackBar(
+            context,
+            message: StyleMyFile.snackBarSuccessfullyDeleted,
+            backgroundColor: StyleMyFile.snackBarSuccessColor,
+          ),
+        )
+        .catchError(
+          (error) => createSnackBar(
+            context,
+            message: StyleMyFile.snackBarDeletingError,
+            backgroundColor: StyleMyFile.snackBarErrorColor,
+          ),
+        )
+        .whenComplete(() => updateFilesList());
   }
 
-  createSnackBar(BuildContext context, {required String message, required Color backgroundColor}) {
+  createSnackBar(BuildContext context,
+      {required String message, required Color backgroundColor}) {
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
@@ -117,5 +128,4 @@ class SlidableMyFileItem extends StatelessWidget {
       ),
     );
   }
-
 }

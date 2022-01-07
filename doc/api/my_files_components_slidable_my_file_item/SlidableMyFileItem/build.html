@@ -110,10 +110,22 @@ Widget build(BuildContext context) {
   bool isDirectory = file.statSync().type.toString() == &#39;directory&#39;;
   return Slidable(
     key: Key(file.path),
-    actionPane: SlidableDrawerActionPane(key: UniqueKey()),
-    dismissal: SlidableDismissal(
-      dragDismissible: false,
-      child: SlidableDrawerDismissal(),
+    startActionPane: ActionPane(
+      key: UniqueKey(),
+      motion: const ScrollMotion(),
+      dismissible: DismissiblePane(
+        onDismissed: () =&gt; StyleMyFile.iconSlideActionModel.closeOnTap,
+      ),
+      children: [
+        SlidableAction(
+          backgroundColor:
+              StyleMyFile.iconSlideActionModel.color ?? Color(0xFFFE4A49),
+          onPressed: (_) =&gt;
+              checkDeletingFiles(context, file.path, isDirectory),
+          icon: StyleMyFile.iconSlideActionModel.icon,
+          foregroundColor: StyleMyFile.iconSlideActionModel.foregroundColor,
+        ),
+      ],
     ),
     child: MyFilesItems(
       item: file,
@@ -124,15 +136,6 @@ Widget build(BuildContext context) {
       onOpenDocument: (String path) =&gt; openDocument(path),
       onShared: (file) =&gt; onShared(file),
     ),
-    actions: [
-      IconSlideAction(
-        color: StyleMyFile.iconSlideActionModel.color,
-        closeOnTap: StyleMyFile.iconSlideActionModel.closeOnTap,
-        onTap: () =&gt; checkDeletingFiles(context, file.path, isDirectory),
-        icon: StyleMyFile.iconSlideActionModel.icon,
-        foregroundColor: StyleMyFile.iconSlideActionModel.foregroundColor,
-      ),
-    ],
   );
 }</code></pre>
 </section>
@@ -213,7 +216,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     open_document
-      1.0.2+1
+      1.0.4
   </span>
 
   

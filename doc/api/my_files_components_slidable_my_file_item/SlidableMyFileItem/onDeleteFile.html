@@ -67,21 +67,25 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">void onDeleteFile(BuildContext context,String path, bool isDirectory) async {
+  <pre class="language-dart"><code class="language-dart">void onDeleteFile(BuildContext context, String path, bool isDirectory) async {
   var document = isDirectory ? Directory(path) : File(path);
   await document
       .delete(recursive: true)
       .then(
-        (value) =&gt; createSnackBar(context,
-      message: StyleMyFile.snackBarSuccessfullyDeleted,
-      backgroundColor: StyleMyFile.snackBarSuccessColor,
-    ),
-  ).catchError(
-        (error) =&gt; createSnackBar(context,
-      message: StyleMyFile.snackBarDeletingError,
-      backgroundColor: StyleMyFile.snackBarErrorColor,
-    ),
-  ).whenComplete(() =&gt; updateFilesList());
+        (value) =&gt; createSnackBar(
+          context,
+          message: StyleMyFile.snackBarSuccessfullyDeleted,
+          backgroundColor: StyleMyFile.snackBarSuccessColor,
+        ),
+      )
+      .catchError(
+        (error) =&gt; createSnackBar(
+          context,
+          message: StyleMyFile.snackBarDeletingError,
+          backgroundColor: StyleMyFile.snackBarErrorColor,
+        ),
+      )
+      .whenComplete(() =&gt; updateFilesList());
 }</code></pre>
 </section>
 
@@ -161,7 +165,7 @@
 <footer>
   <span class="no-break">
     open_document
-      1.0.2+1
+      1.0.4
   </span>
 
   
