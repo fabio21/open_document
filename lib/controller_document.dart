@@ -40,9 +40,9 @@ class ControllerDocument {
   Future<String> getNameFolder({String? widowsFolder}) async {
     try {
       if (Platform.isWindows)
-        return widowsFolder ?? "";
+        return widowsFolder ?? "app_folder";
       else
-        return await methodChannel.invokeMethod("getNameFolder");
+        return await methodChannel.invokeMethod("getNameFolder", widowsFolder);
     } on PlatformException catch (e) {
       throw OpenDocumentException('getNameFolder: ${e.stacktrace.toString()}');
     }
