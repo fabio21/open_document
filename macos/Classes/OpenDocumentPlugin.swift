@@ -17,7 +17,7 @@
         
         public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
             if call.method == "getPathDocument"{
-                getPathDocument(call.arguments as! String, result: result)
+                getPathDocument(call.arguments as? String, result: result)
             }else if call.method == "getName"{
                 getName(call.arguments as! String, result: result)
             }else if call.method == "getNameFolder"{
@@ -48,7 +48,7 @@
         }
         
         //MARK: - getPathDocument
-        public func getPathDocument(_ foderName:String,  result: @escaping FlutterResult){
+        public func getPathDocument(_ foderName:String?,  result: @escaping FlutterResult){
             let paths = NSSearchPathForDirectoriesInDomains( .documentDirectory, .allDomainsMask, true)
             let documentsDirectory = paths[0]
             result(documentsDirectory)
