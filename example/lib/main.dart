@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     Wakelock.enable();
     super.initState();
-    if(!Platform.isWindows && !Platform.isMacOS)
+    if(!Platform.isMacOS)
     initCheckPermission();
 
     initPlatformState();
@@ -46,22 +46,22 @@ class _MyAppState extends State<MyApp> {
   Future<void> initPlatformState() async {
     String filePath;
 
+    final url =
+        "https://ufms.br/wp-content/uploads/2017/09/PDF-teste.pdf";
     //
     // Platform messages may fail, so we use a try/catch PlatformException.
-    // "https://file-examples-com.github.io/uploads/2017/02/file_example_XLS_5000.xls";
-    final url =
-        "https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_500_kB.pdf";
     //"https://file-examples-com.github.io/uploads/2017/02/file_example_XLS_5000.xls";
-    //  "https://file-examples-com.github.io/uploads/2017/02/zip_10MB.zip";
-//
+    //"https://file-examples-com.github.io/uploads/2017/02/file_example_XLS_5000.xls";
+    //"https://file-examples-com.github.io/uploads/2017/02/zip_10MB.zip";
+
     final name = await OpenDocument.getNameFile(url: url);
 
-    final path = await OpenDocument.getPathDocument(folderName: "example");
+    final path = await OpenDocument.getPathDocument(folderName: "open_document_example");
     filePath = "$path/$name";
 
     final isCheck = await OpenDocument.checkDocument(filePath: filePath);
 
-    debugPrint("Exist: $isCheck");
+    debugPrint("Exist: $isCheck \nPath: $filePath");
     try {
       if (!isCheck) {
         filePath = await downloadFile(filePath: "$filePath", url: url);

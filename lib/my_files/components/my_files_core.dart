@@ -45,7 +45,7 @@ class MyFilesCore extends StatelessWidget {
   }
 
   Widget buildHeader() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) => _scrollToEnd());
+    WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToEnd());
     return HeaderMyFolderFile(scrollController: scrollController, lastPaths: lastPaths);
   }
 }
