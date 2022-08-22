@@ -5,3 +5,12 @@
 .pub/
 
 build/
+
+
+/android/gradle/wrapper/.tmp/
+/android/gradle/wrapper/caches/
+/android/gradle/wrapper/daemon/
+/android/gradle/wrapper/jdks/
+/android/gradle/wrapper/kotlin-profile/
+/android/gradle/wrapper/native/
+/android/gradle/wrapper/wrapper/dists/
