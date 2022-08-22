@@ -1,5 +1,4 @@
 
-import 'package:flutter/services.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'open_document_method_channel.dart';
 
