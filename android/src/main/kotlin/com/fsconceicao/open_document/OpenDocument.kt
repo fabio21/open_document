@@ -20,7 +20,7 @@ class OpenDocument(context: Context, activity: FlutterActivity?) {
 
 
     fun setActivity(activity: FlutterActivity) {
-        this.activity = activity;
+        this.activity = activity
     }
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
@@ -35,7 +35,7 @@ class OpenDocument(context: Context, activity: FlutterActivity?) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 val uri = FileProvider.getUriForFile(
                     applicationContext,
-                    activity?.context?.packageName + ".fileprovider", File(url)
+                    applicationContext.packageName + ".fileprovider", File(url)
                 )
                 intent.setDataAndType(uri, getFileType(type[1]))
             } else {
@@ -72,9 +72,9 @@ class OpenDocument(context: Context, activity: FlutterActivity?) {
     }
 
     internal fun getNameFolder(@NonNull result: MethodChannel.Result) {
-        val name = nameFolder();
+        val name = nameFolder()
         if (name.contains("NameFolder:"))
-            result.error("Error", name, "Get name app");
+            result.error("Error", name, "Get name app")
         else
             result.success(name)
     }
@@ -94,8 +94,8 @@ class OpenDocument(context: Context, activity: FlutterActivity?) {
             val app = applicationContext.packageManager?.getApplicationInfo(
                 applicationContext.packageName,
                 0
-            );
-            return applicationContext.packageManager?.getApplicationLabel(app).toString();
+            )
+            return applicationContext.packageManager?.getApplicationLabel(app).toString()
         } catch (e: Exception) {
             "NameFolder: " + e.localizedMessage;
         }
@@ -110,7 +110,7 @@ class OpenDocument(context: Context, activity: FlutterActivity?) {
         return fileNameToDelete
     }
 
-    private fun getFileType(type: String): String? {
+    private fun getFileType(type: String): String {
         return when (type) {
             "3gp" -> "video/3gpp"
             "apk" -> "application/vnd.android.package-archive"

@@ -70,12 +70,8 @@ for Windows pass the name in the param<code>widowsFolder</code></p>
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">static Future&lt;String&gt; getNameFolder({String? widowsFolder}) async {
-  try {
-    if (Platform.isWindows) return widowsFolder ?? &quot;&quot;;
-    return await _channel.invokeMethod(&#39;getNameFolder&#39;);
-  } on PlatformException catch (e) {
-    throw OpenDocumentException(&#39;getNameFolder: ${e.stacktrace.toString()}&#39;);
-  }
+  return await OpenDocumentPlatform.instance
+      .getNameFolder(widowsFolder: widowsFolder);
 }</code></pre>
 </section>
 
@@ -100,8 +96,8 @@ for Windows pass the name in the param<code>widowsFolder</code></p>
     <h5>OpenDocument class</h5>
     <ol>
 
-    <li class="section-title"><a href="../../open_document/OpenDocument-class.html#constructors">Constructors</a></li>
-    <li><a href="../../open_document/OpenDocument/OpenDocument.html">OpenDocument</a></li>
+        <li class="section-title"><a href="../../open_document/OpenDocument-class.html#constructors">Constructors</a></li>
+          <li><a href="../../open_document/OpenDocument/OpenDocument.html">OpenDocument</a></li>
 
 
     <li class="section-title inherited">
@@ -119,12 +115,12 @@ for Windows pass the name in the param<code>widowsFolder</code></p>
 
 
 
-    <li class="section-title"><a href="../../open_document/OpenDocument-class.html#static-methods">Static methods</a></li>
-    <li><a href="../../open_document/OpenDocument/checkDocument.html">checkDocument</a></li>
-    <li><a href="../../open_document/OpenDocument/getNameFile.html">getNameFile</a></li>
-    <li><a href="../../open_document/OpenDocument/getNameFolder.html">getNameFolder</a></li>
-    <li><a href="../../open_document/OpenDocument/getPathDocument.html">getPathDocument</a></li>
-    <li><a href="../../open_document/OpenDocument/openDocument.html">openDocument</a></li>
+        <li class="section-title"><a href="../../open_document/OpenDocument-class.html#static-methods">Static methods</a></li>
+          <li><a href="../../open_document/OpenDocument/checkDocument.html">checkDocument</a></li>
+          <li><a href="../../open_document/OpenDocument/getNameFile.html">getNameFile</a></li>
+          <li><a href="../../open_document/OpenDocument/getNameFolder.html">getNameFolder</a></li>
+          <li><a href="../../open_document/OpenDocument/getPathDocument.html">getPathDocument</a></li>
+          <li><a href="../../open_document/OpenDocument/openDocument.html">openDocument</a></li>
 
 </ol>
 

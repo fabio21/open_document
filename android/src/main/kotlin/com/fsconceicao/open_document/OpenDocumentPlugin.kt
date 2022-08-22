@@ -10,13 +10,13 @@ import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 /** OpenDocumentPlugin */
 class OpenDocumentPlugin : FlutterPlugin, ActivityAware {
 
-  private var TAG = "OpenDocumentPlugin"
+  private val TAG = "OpenDocumentPlugin"
   private var openDocumentCallHandler: OpenDocumentImpl? = null
-  private var doc:OpenDocument? = null;
+  private var doc:OpenDocument? = null
 
 
   override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
-    doc = OpenDocument(binding.applicationContext, null);
+    doc = OpenDocument(binding.applicationContext, null)
     openDocumentCallHandler = OpenDocumentImpl(doc!!)
     openDocumentCallHandler.let {
       it?.startListening(binding.binaryMessenger)
@@ -25,39 +25,39 @@ class OpenDocumentPlugin : FlutterPlugin, ActivityAware {
 
   override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
     if (openDocumentCallHandler == null) {
-      Log.wtf(TAG, "Already detached from the engine.");
-      return;
+      Log.wtf(TAG, "Already detached from the engine.")
+      return
     }
 
     openDocumentCallHandler.let {
-      it?.stopListening();
+      it?.stopListening()
     }
-    openDocumentCallHandler = null;
+    openDocumentCallHandler = null
     doc = null
   }
 
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
     if (openDocumentCallHandler == null) {
-      Log.wtf(TAG, "urlLauncher was never set.");
-      return;
+      Log.wtf(TAG, "urlLauncher was never set.")
+      return
     }
     doc.let {
-      it?.setActivity(binding.activity as FlutterActivity);
+      it?.setActivity(binding.activity as FlutterActivity)
     }
   }
 
   override fun onDetachedFromActivityForConfigChanges() {
-    onDetachedFromActivity();
+    onDetachedFromActivity()
   }
 
   override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-    onAttachedToActivity(binding);
+    onAttachedToActivity(binding)
   }
 
   override fun onDetachedFromActivity() {
     if (openDocumentCallHandler == null) {
-      Log.wtf(TAG, "urlLauncher was never set.");
-      return;
+      Log.wtf(TAG, "urlLauncher was never set.")
+      return
     }
   }
 }

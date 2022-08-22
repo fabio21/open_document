@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding='utf-8' standalone='no'?>
+<resources>
+<!-- third_party/android/androidx_test/core/java/androidx/test/core/res/values/styles.xml -->
+<eat-comment/>
+<style name="InstrumentationActivityInvokerEmptyActivityTheme" parent="android:Theme">
+<item name="android:windowIsFloating">false</item>
+</style>
+<style name="InstrumentationActivityInvokerFloatingActivityTheme" parent="android:Theme">
+<item name="android:windowIsFloating">true</item>
+</style>
+</resources>

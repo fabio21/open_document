@@ -1,0 +1,11 @@
+kotlin.collections.jdk8.CollectionsJDK8Kt
+kotlin.internal.jdk8.JDK8PlatformImplementations
+kotlin.random.jdk8.PlatformThreadLocalRandom
+kotlin.streams.jdk8.StreamsKt
+kotlin.streams.jdk8.StreamsKt$asSequence$$inlined$Sequence$1
+kotlin.streams.jdk8.StreamsKt$asSequence$$inlined$Sequence$2
+kotlin.streams.jdk8.StreamsKt$asSequence$$inlined$Sequence$3
+kotlin.streams.jdk8.StreamsKt$asSequence$$inlined$Sequence$4
+kotlin.streams.jdk8.StreamsKt$asStream$1
+kotlin.text.jdk8.RegexExtensionsJDK8Kt
+kotlin.time.jdk8.DurationConversionsJDK8Kt

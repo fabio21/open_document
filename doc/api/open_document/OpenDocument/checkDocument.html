@@ -52,7 +52,7 @@
     <section class="multi-line-signature">
       
 
-<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span></span>
+<span class="returntype">dynamic</span>
 <span class="name ">checkDocument</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="checkDocument-param-filePath">{<span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">filePath</span>}</span></li>
 </ol>)
 
@@ -68,14 +68,9 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static Future&lt;bool&gt; checkDocument({required String filePath}) async {
-   try {
-     if (Platform.isWindows) return await hasFolderWindows(path: filePath);
-     return await _channel.invokeMethod(&#39;checkDocument&#39;, filePath);
-   } on PlatformException catch (e) {
-     throw OpenDocumentException(&#39;checkDocument: ${e.stacktrace.toString()}&#39;);
-   }
- }</code></pre>
+  <pre class="language-dart"><code class="language-dart">static checkDocument({required String filePath}) {
+  return OpenDocumentPlatform.instance.checkDocument(filePath: filePath);
+}</code></pre>
 </section>
 
 
@@ -99,8 +94,8 @@
     <h5>OpenDocument class</h5>
     <ol>
 
-    <li class="section-title"><a href="../../open_document/OpenDocument-class.html#constructors">Constructors</a></li>
-    <li><a href="../../open_document/OpenDocument/OpenDocument.html">OpenDocument</a></li>
+        <li class="section-title"><a href="../../open_document/OpenDocument-class.html#constructors">Constructors</a></li>
+          <li><a href="../../open_document/OpenDocument/OpenDocument.html">OpenDocument</a></li>
 
 
     <li class="section-title inherited">
@@ -118,12 +113,12 @@
 
 
 
-    <li class="section-title"><a href="../../open_document/OpenDocument-class.html#static-methods">Static methods</a></li>
-    <li><a href="../../open_document/OpenDocument/checkDocument.html">checkDocument</a></li>
-    <li><a href="../../open_document/OpenDocument/getNameFile.html">getNameFile</a></li>
-    <li><a href="../../open_document/OpenDocument/getNameFolder.html">getNameFolder</a></li>
-    <li><a href="../../open_document/OpenDocument/getPathDocument.html">getPathDocument</a></li>
-    <li><a href="../../open_document/OpenDocument/openDocument.html">openDocument</a></li>
+        <li class="section-title"><a href="../../open_document/OpenDocument-class.html#static-methods">Static methods</a></li>
+          <li><a href="../../open_document/OpenDocument/checkDocument.html">checkDocument</a></li>
+          <li><a href="../../open_document/OpenDocument/getNameFile.html">getNameFile</a></li>
+          <li><a href="../../open_document/OpenDocument/getNameFolder.html">getNameFolder</a></li>
+          <li><a href="../../open_document/OpenDocument/getPathDocument.html">getPathDocument</a></li>
+          <li><a href="../../open_document/OpenDocument/openDocument.html">openDocument</a></li>
 
 </ol>
 

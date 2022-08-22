@@ -69,12 +69,7 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">static Future&lt;void&gt; openDocument({required String filePath}) async {
-  try {
-    if (Platform.isWindows) return await openDocumentWindows(path: filePath);
-   return await _channel.invokeMethod(&#39;openDocument&#39;, filePath);
-  } on PlatformException catch (e) {
-    throw OpenDocumentException(&#39;openDocument: ${e.stacktrace.toString()}&#39;);
-  }
+  return await OpenDocumentPlatform.instance.openDocument(filePath: filePath);
 }</code></pre>
 </section>
 
@@ -99,8 +94,8 @@
     <h5>OpenDocument class</h5>
     <ol>
 
-    <li class="section-title"><a href="../../open_document/OpenDocument-class.html#constructors">Constructors</a></li>
-    <li><a href="../../open_document/OpenDocument/OpenDocument.html">OpenDocument</a></li>
+        <li class="section-title"><a href="../../open_document/OpenDocument-class.html#constructors">Constructors</a></li>
+          <li><a href="../../open_document/OpenDocument/OpenDocument.html">OpenDocument</a></li>
 
 
     <li class="section-title inherited">
@@ -118,12 +113,12 @@
 
 
 
-    <li class="section-title"><a href="../../open_document/OpenDocument-class.html#static-methods">Static methods</a></li>
-    <li><a href="../../open_document/OpenDocument/checkDocument.html">checkDocument</a></li>
-    <li><a href="../../open_document/OpenDocument/getNameFile.html">getNameFile</a></li>
-    <li><a href="../../open_document/OpenDocument/getNameFolder.html">getNameFolder</a></li>
-    <li><a href="../../open_document/OpenDocument/getPathDocument.html">getPathDocument</a></li>
-    <li><a href="../../open_document/OpenDocument/openDocument.html">openDocument</a></li>
+        <li class="section-title"><a href="../../open_document/OpenDocument-class.html#static-methods">Static methods</a></li>
+          <li><a href="../../open_document/OpenDocument/checkDocument.html">checkDocument</a></li>
+          <li><a href="../../open_document/OpenDocument/getNameFile.html">getNameFile</a></li>
+          <li><a href="../../open_document/OpenDocument/getNameFolder.html">getNameFolder</a></li>
+          <li><a href="../../open_document/OpenDocument/getPathDocument.html">getPathDocument</a></li>
+          <li><a href="../../open_document/OpenDocument/openDocument.html">openDocument</a></li>
 
 </ol>
 

@@ -26,12 +26,12 @@ class OpenDocumentImpl(private val doc: OpenDocument) : MethodChannel.MethodCall
 
     fun stopListening() {
         if (channel == null) {
-            Log.d(TAG, "Tried to stop listening when no MethodChannel had been initialized.");
-            return;
+            Log.d(TAG, "Tried to stop listening when no MethodChannel had been initialized.")
+            return
         }
 
-        channel!!.setMethodCallHandler(null);
-        channel = null;
+        channel!!.setMethodCallHandler(null)
+        channel = null
     }
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
@@ -39,25 +39,24 @@ class OpenDocumentImpl(private val doc: OpenDocument) : MethodChannel.MethodCall
         Log.d("DART/NATIVE", "onMethodCall ${call.method}")
         //our code
         when (call.method) {
-            "getPathDocument" -> Thread(Runnable {
-                doc.getPathDocument(call.arguments as String, result)
-            }).start()
-            "getName" -> Thread(Runnable {
+            "getPathDocument" -> Thread {
+                doc.getPathDocument(call.arguments as String?, result)
+            }.start()
+            "getName" -> Thread {
                 doc.getName(call.arguments as String, result)
-            }).start()
-            "getNameFolder" -> Thread(Runnable {
+            }.start()
+            "getNameFolder" -> Thread {
                 doc.getNameFolder(result)
-            }).start()
-            "checkDocument" -> Thread(Runnable {
+            }.start()
+            "checkDocument" -> Thread {
                 doc.checkDocument(call.arguments as String, result)
-            }).start()
-            "openDocument" -> Thread(Runnable {
+            }.start()
+            "openDocument" -> Thread {
                 doc.openDocument(call.arguments as String, result)
-            }).start()
+            }.start()
             else -> result.notImplemented()
         }
     }
 
 
-    // Thread(Runnable { msal.loadAccounts(result) }).start()
 }
