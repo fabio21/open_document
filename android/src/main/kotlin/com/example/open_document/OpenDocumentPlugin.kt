@@ -45,7 +45,9 @@ class OpenDocumentPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     @JvmStatic
     fun registerWith(registrar: Registrar) {
       val plugin = OpenDocumentPlugin()
-      plugin.activity = registrar.activity()
+      if(registrar.activity() != null) {
+        plugin.activity = registrar.activity()!!
+      }
       plugin.context = registrar.context()
       val channel = MethodChannel(registrar.messenger(), "open_document")
       channel.setMethodCallHandler(plugin)
@@ -176,8 +178,9 @@ class OpenDocumentPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
   }
 
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-    channel = MethodChannel(
-            flutterPluginBinding?.binaryMessenger, "open_document")
+    if(flutterPluginBinding == null || flutterPluginBinding?.binaryMessenger == null)
+      return;
+    channel = MethodChannel(flutterPluginBinding!!.binaryMessenger, "open_document")
     context = flutterPluginBinding?.applicationContext!!
     activity = binding.activity
     channel?.setMethodCallHandler(this)
