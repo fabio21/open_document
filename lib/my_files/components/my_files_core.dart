@@ -18,7 +18,6 @@ class MyFilesCore extends StatelessWidget {
     required this.scrollController,
     this.isShare = false,
     required this.onClick,
-
   }) : super(key: key);
 
   @override
@@ -34,10 +33,9 @@ class MyFilesCore extends StatelessWidget {
 
   Expanded buildBodyList() {
     return Expanded(
-      child: widgets.isNotEmpty
-          ? ListView(children: widgets)
-          : StyleMyFile.emptyFolder
-    );
+        child: widgets.isNotEmpty
+            ? ListView(children: widgets)
+            : StyleMyFile.emptyFolder);
   }
 
   _scrollToEnd() async {
@@ -45,9 +43,8 @@ class MyFilesCore extends StatelessWidget {
   }
 
   Widget buildHeader() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) => _scrollToEnd());
-    return HeaderMyFolderFile(scrollController: scrollController, lastPaths: lastPaths);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToEnd());
+    return HeaderMyFolderFile(
+        scrollController: scrollController, lastPaths: lastPaths);
   }
 }
-
-

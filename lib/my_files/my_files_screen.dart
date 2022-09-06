@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:open_document/my_files/components/slidable_my_file_item.dart';
-import 'package:open_document/my_files/model/style_my_file.dart';
 import 'package:open_document/open_document.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
+
 import 'init.dart';
 
 class MyFilesScreen extends StatefulWidget {
@@ -146,8 +147,6 @@ class _MyFilesScreenState extends State<MyFilesScreen>
     return widgets;
   }
 
-
-
   Future<List<FileSystemEntity>> getDocumentPath() async {
     var files = <FileSystemEntity>[];
     var completer = new Completer<List<FileSystemEntity>>();
@@ -156,7 +155,7 @@ class _MyFilesScreenState extends State<MyFilesScreen>
     if (widget.filePath != nameApp) {
       path = widget.filePath;
     } else {
-        path = await OpenDocument.getPathDocument(folderName: widget.filePath);
+      path = await OpenDocument.getPathDocument(folderName: widget.filePath);
     }
 
     Directory dir = new Directory(path);
@@ -196,7 +195,6 @@ class _MyFilesScreenState extends State<MyFilesScreen>
     );
   }
 
-
   updateFilesList() {
     setState(() {
       lastPaths.removeLast();
@@ -226,5 +224,4 @@ class _MyFilesScreenState extends State<MyFilesScreen>
     });
     Share.shareFiles(selectedFiles);
   }
-
 }

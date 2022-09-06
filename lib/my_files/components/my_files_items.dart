@@ -1,9 +1,8 @@
 import 'dart:io';
-import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:open_document/my_files/init.dart';
-import 'package:open_document/my_files/model/style_my_file.dart';
 
 class MyFilesItems extends StatelessWidget {
   final FileSystemEntity item;
@@ -48,19 +47,19 @@ class MyFilesItems extends StatelessWidget {
 
   BoxDecoration buildBoxDecorationLine() {
     return BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: Colors.black12, width: 1),
-        ),
-      );
+      border: Border(
+        bottom: BorderSide(color: Colors.black12, width: 1),
+      ),
+    );
   }
 
   actionDecision(bool isDirectory, bool isZipFile) {
     if (isShare && !isDirectory)
-     return onShared(item);
+      return onShared(item);
     else if (isDirectory)
-     return onPushScreen(item.path);
+      return onPushScreen(item.path);
     else if (isZipFile)
-     return onUnzipFile(item.path);
+      return onUnzipFile(item.path);
     else
       return onOpenDocument(item.path);
   }
@@ -76,8 +75,8 @@ class MyFilesItems extends StatelessWidget {
             children: [
               TextSpan(text: "$title \n"),
               TextSpan(
-                  text: convertDaTeyMdAddJMS(date),
-                  style: StyleMyFile.styleSubtitle,
+                text: convertDaTeyMdAddJMS(date),
+                style: StyleMyFile.styleSubtitle,
               ),
             ],
           ),
@@ -87,14 +86,13 @@ class MyFilesItems extends StatelessWidget {
   }
 
   buildIcon(bool isDirectory, bool isZipFile) {
-    if(isDirectory)
+    if (isDirectory)
       return StyleMyFile.folder;
-    else if(isZipFile)
+    else if (isZipFile)
       return StyleMyFile.folderZip;
     else
-    return StyleMyFile.description;
+      return StyleMyFile.description;
   }
-
 
   Widget buildContainerRadius() {
     return AnimatedContainer(
@@ -130,7 +128,6 @@ class MyFilesItems extends StatelessWidget {
     );
   }
 }
-
 
 /// Ex: 06/05/2020 3:04:00 PM (en) or 05/06/2020 15:04:00 (pt-BR)
 String convertDaTeyMdAddJMS(DateTime date) {
