@@ -1,7 +1,7 @@
 name: open_document
 description: Opendocument generate a folder and open the pdf, xlsx, docs, ppt and zip files,
   you can also locate your MyFilesScreen implement file and for style use StyleMyFile.
-version: 1.0.4
+version: 1.0.5
 
 homepage: https://github.com/fabio21/open_document.git
 repository: https://github.com/fabio21/open_document.git
