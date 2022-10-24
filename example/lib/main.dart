@@ -3,9 +3,9 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:open_document/my_files/init.dart';
 import 'package:open_document/open_document.dart';
+import 'package:open_document/open_document_exception.dart';
 import 'package:open_document_example/permission_service.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:wakelock/wakelock.dart';
@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
     String filePath;
 
     final url =
-        "https://ufms.br/wp-content/uploads/2017/09/PDF-teste.pdf";
+        "https://filesamples.com/samples/document/pdf/sample3.pdf";
     //
     // Platform messages may fail, so we use a try/catch PlatformException.
     //"https://file-examples-com.github.io/uploads/2017/02/file_example_XLS_5000.xls";
@@ -66,12 +66,13 @@ class _MyAppState extends State<MyApp> {
       if (!isCheck) {
         filePath = await downloadFile(filePath: "$filePath", url: url);
       }
-      await OpenDocument.openDocument(
+      
+    var result =  await OpenDocument.openDocument(
         filePath: filePath,
       );
 
-    } on PlatformException catch (e) {
-      debugPrint("ERROR: message_${e.message} ---- detail_${e.details}");
+    } on OpenDocumentException catch (e) {
+      debugPrint("ERROR: ${e.errorMessage}");
       filePath = 'Failed to get platform version.';
     }
 

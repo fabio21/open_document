@@ -32,6 +32,15 @@ class OpenDocument(context: Context, activity: FlutterActivity?) {
             intent.addCategory("android.intent.category.DEFAULT")
             val type = name(url).split(".")
 
+            if (activity?.packageManager == null) {
+                result.error(
+                    "REFUSE",
+                    "NO TO A REFUSE TO OPEN THE FILE ${type.last()}",
+                    "INSTALL AN APP TO VIEW THE FILE"
+                )
+                return
+            }
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 val uri = FileProvider.getUriForFile(
                     applicationContext,

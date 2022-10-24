@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
 import 'package:open_document/my_files/init.dart';
-import 'package:open_document/my_files/model/style_my_file.dart';
 
 class MyFilesItems extends StatelessWidget {
   final FileSystemEntity item;

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:open_document/my_files/components/slidable_my_file_item.dart';
-import 'package:open_document/my_files/model/style_my_file.dart';
 import 'package:open_document/open_document.dart';
 import 'package:share_plus/share_plus.dart';
 import 'init.dart';
