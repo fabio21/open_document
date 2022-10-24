@@ -65,8 +65,9 @@ Create folder em Document
 
     await OpenDocument.openDocument(filePath: filePath);
 
-    } on PlatformException catch (e) {
-      debugPrint("ERROR: message_${e.message} ---- detail_${e.details}");
+    } on OpenDocumentException catch (e) {
+      debugPrint("ERROR: ${e.errorMessage}");
+      filePath = 'Failed to get platform version.';
     }
 
     Future<String> downloadFile({String filePath, String url}) async {
