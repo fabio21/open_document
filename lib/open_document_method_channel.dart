@@ -52,7 +52,7 @@ class MethodChannelOpenDocument extends OpenDocumentPlatform {
       if (Platform.isWindows) return await WindowsFun.openDocumentWindows(path: filePath);
       return await methodChannel.invokeMethod("openDocument", filePath);
     } on PlatformException catch (e) {
-      throw OpenDocumentException('openDocument: ${e.stacktrace.toString()}');
+      throw OpenDocumentException('openDocument: ${e.toString()}');
     }
   }
 

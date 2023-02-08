@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:open_document/my_files/init.dart';
 import 'package:open_document/open_document.dart';
 import 'package:open_document/open_document_exception.dart';
@@ -48,7 +47,7 @@ class _MyAppState extends State<MyApp> {
     String filePath;
 
     final url =
-        "https://filesamples.com/samples/document/pdf/sample3.pdf";
+        "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Ffile-examples.com%2Fstorage%2Ffe863385e163e3b0f92dc53%2F2017%2F02%2Ffile_example_XLS_10.xls&wdOrigin=BROWSELINK";
     //
     // Platform messages may fail, so we use a try/catch PlatformException.
     //"https://file-examples-com.github.io/uploads/2017/02/file_example_XLS_5000.xls";

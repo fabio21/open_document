@@ -95,7 +95,7 @@ class OpenDocument(context: Context, activity: FlutterActivity?) {
                 applicationContext.packageName,
                 0
             )
-            return applicationContext.packageManager?.getApplicationLabel(app).toString()
+            return applicationContext.packageManager?.getApplicationLabel(app!!).toString()
         } catch (e: Exception) {
             "NameFolder: " + e.localizedMessage;
         }
