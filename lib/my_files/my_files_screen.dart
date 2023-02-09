@@ -159,7 +159,7 @@ class _MyFilesScreenState extends State<MyFilesScreen>
     var completer = new Completer<List<FileSystemEntity>>();
     String path = '';
     String nameApp = await OpenDocument.getNameFolder(
-        widowsFolder: StyleMyFile.nameFolderDocumentWindows);
+        folderName: StyleMyFile.nameFolderDocumentWindows);
     if (widget.filePath != nameApp) {
       path = widget.filePath;
     } else {

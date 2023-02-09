@@ -2,6 +2,10 @@
 
 // This must be included before many other Windows headers.
 #include <windows.h>
+#include <Windows.h>
+#include <vector>
+#include <Lmcons.h>
+#include <ShellApi.h>
 
 // For getPlatformVersion; remove unless needed for your plugin implementation.
 #include <VersionHelpers.h>
@@ -13,6 +17,7 @@
 #include <map>
 #include <memory>
 #include <sstream>
+#include <optional>
 
 namespace {
 
@@ -21,7 +26,6 @@ class OpenDocumentPlugin : public flutter::Plugin {
   static void RegisterWithRegistrar(flutter::PluginRegistrarWindows *registrar);
 
   OpenDocumentPlugin();
-
   virtual ~OpenDocumentPlugin();
 
  private:
@@ -30,8 +34,67 @@ class OpenDocumentPlugin : public flutter::Plugin {
       const flutter::MethodCall<flutter::EncodableValue> &method_call,
       std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result);
 };
+  using flutter::EncodableMap;
+  using flutter::EncodableValue;
+ std::string wide_string_to_string(const std::wstring& wide_string)
+  {
+      if (wide_string.empty())
+      {
+          return "";
+      }
 
-// static
+      const auto size_needed = WideCharToMultiByte(CP_UTF8, 0, &wide_string.at(0), (int)wide_string.size(), nullptr, 0, nullptr, nullptr);
+      if (size_needed <= 0)
+      {
+          throw std::runtime_error("WideCharToMultiByte() failed: " + std::to_string(size_needed));
+      }
+
+      std::string result(size_needed, 0);
+      WideCharToMultiByte(CP_UTF8, 0, &wide_string.at(0), (int)wide_string.size(), &result.at(0), size_needed, nullptr, nullptr);
+      return result;
+  }
+
+  std::vector<std::string> split(const std::string& s, char delim) {
+     std::vector<std::string> result;
+     std::stringstream ss(s);
+     std::string item;
+     std::string value;
+
+      while (getline(ss, item, delim)) {
+          result.push_back(item);
+          value = item;
+      }
+
+      return result;
+  }
+
+
+  std::string GetNameFolder()
+  {
+      DWORD nSize = 200;
+      TCHAR *outStr = new TCHAR[nSize];
+      GetModuleFileName(NULL, outStr, nSize);
+      std::string value = wide_string_to_string(outStr);
+      delete[] outStr;
+      std::string delimiter = ".exe";
+      std::string path = value.substr(0, value.find(delimiter));
+      std::vector<std::string> v = split(path, '\\');
+      return v.back();
+  }
+
+
+   void OpenDocument(const char* PATH){
+     ShellExecuteA(GetDesktopWindow(), "open", PATH, NULL, NULL, SW_SHOW);
+   }
+
+   std::string GetArgument(const flutter::MethodCall<>& method_call) {
+      const auto* arguments = std::get_if<flutter::EncodableMap>(method_call.arguments());
+       auto vName = arguments->find(flutter::EncodableValue("path"));
+       std::string path = std::get<std::string>(vName->second);
+        std::cout << path;
+       return path;
+   }
+
 void OpenDocumentPlugin::RegisterWithRegistrar(
     flutter::PluginRegistrarWindows *registrar) {
   auto channel =
@@ -53,23 +116,22 @@ OpenDocumentPlugin::OpenDocumentPlugin() {}
 
 OpenDocumentPlugin::~OpenDocumentPlugin() {}
 
+
 void OpenDocumentPlugin::HandleMethodCall(
     const flutter::MethodCall<flutter::EncodableValue> &method_call,
     std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
-  if (method_call.method_name().compare("getPlatformVersion") == 0) {
-    std::ostringstream version_stream;
-    version_stream << "Windows ";
-    if (IsWindows10OrGreater()) {
-      version_stream << "10+";
-    } else if (IsWindows8OrGreater()) {
-      version_stream << "8";
-    } else if (IsWindows7OrGreater()) {
-      version_stream << "7";
-    }
-    result->Success(flutter::EncodableValue(version_stream.str()));
-  } else {
+    std::ostringstream value;
+
+  if(method_call.method_name().compare("getNameFolder") == 0){
+     value << GetNameFolder().c_str();
+     result->Success(flutter::EncodableValue(value.str()));
+  } else if(method_call.method_name().compare("openDocument") == 0){
+      OpenDocument(GetArgument(method_call).c_str());
+      result->Success();
+  }else {
     result->NotImplemented();
   }
+
 }
 
 }  // namespace

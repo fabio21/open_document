@@ -16,7 +16,8 @@ class MethodChannelOpenDocument extends OpenDocumentPlatform {
   @override
   Future<bool> checkDocument({required String filePath}) async {
     try {
-      if (Platform.isWindows) return await WindowsFun.hasFolderWindows(path: filePath);
+      if (Platform.isWindows)
+        return await WindowsFun.hasFolderWindows(path: filePath);
       return await methodChannel.invokeMethod("checkDocument", filePath);
     } on PlatformException catch (e) {
       throw OpenDocumentException('checkDocument: ${e.stacktrace.toString()}');
@@ -49,23 +50,25 @@ class MethodChannelOpenDocument extends OpenDocumentPlatform {
   @override
   Future<void> openDocument({required String filePath}) async {
     try {
-      if (Platform.isWindows) return await WindowsFun.openDocumentWindows(path: filePath);
-      return await methodChannel.invokeMethod("openDocument", filePath);
+      if (Platform.isWindows)
+        return await methodChannel.invokeMethod("openDocument",
+            {"path": filePath});
+      else
+        return await methodChannel.invokeMethod("openDocument", filePath);
     } on PlatformException catch (e) {
       throw OpenDocumentException('openDocument: ${e.toString()}');
     }
   }
 
   @override
-  Future<String> getNameFolder({String? widowsFolder}) async {
+  Future<String> getNameFolder({String? folderName}) async {
     try {
-      if (Platform.isWindows)
-        return widowsFolder ?? "app_folder";
+      if (folderName != null)
+        return folderName;
       else
-        return await methodChannel.invokeMethod("getNameFolder", widowsFolder);
+        return await methodChannel.invokeMethod("getNameFolder", folderName);
     } on PlatformException catch (e) {
       throw OpenDocumentException('getNameFolder: ${e.stacktrace.toString()}');
     }
   }
 }
-

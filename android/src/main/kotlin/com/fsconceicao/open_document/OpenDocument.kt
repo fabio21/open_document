@@ -3,10 +3,10 @@ package com.fsconceicao.open_document
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
-import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
 import io.flutter.embedding.android.FlutterActivity
@@ -26,20 +26,21 @@ class OpenDocument(context: Context, activity: FlutterActivity?) {
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     internal fun openDocument(url: String, result: MethodChannel.Result) {
         try {
+
+            val type = getFileType(name(url).split(".")[1])
             val intent = Intent(Intent.ACTION_VIEW)
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
             intent.addCategory("android.intent.category.DEFAULT")
-            val type = name(url).split(".")
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 val uri = FileProvider.getUriForFile(
                     applicationContext,
                     applicationContext.packageName + ".fileprovider", File(url)
                 )
-                intent.setDataAndType(uri, getFileType(type[1]))
+                intent.setDataAndType(uri, type)
             } else {
-                intent.setDataAndType(Uri.fromFile(File(url)), getFileType(type[1]))
+                intent.setDataAndType(Uri.fromFile(File(url)), type)
             }
 
             this.activity?.startActivity(intent)
@@ -51,7 +52,7 @@ class OpenDocument(context: Context, activity: FlutterActivity?) {
     }
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
-    internal fun getPathDocument(path: String?, @NonNull result: MethodChannel.Result) {
+    internal fun getPathDocument(path: String?, result: MethodChannel.Result) {
         val str = path ?: nameFolder()
         val file =
             File(Environment.getExternalStorageDirectory().absolutePath + "/Documents/${str}/")
@@ -67,11 +68,11 @@ class OpenDocument(context: Context, activity: FlutterActivity?) {
     }
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
-    internal fun getName(url: String, @NonNull result: MethodChannel.Result) {
+    internal fun getName(url: String, result: MethodChannel.Result) {
         result.success(name(url))
     }
 
-    internal fun getNameFolder(@NonNull result: MethodChannel.Result) {
+    internal fun getNameFolder(result: MethodChannel.Result) {
         val name = nameFolder()
         if (name.contains("NameFolder:"))
             result.error("Error", name, "Get name app")
@@ -80,7 +81,7 @@ class OpenDocument(context: Context, activity: FlutterActivity?) {
     }
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
-    internal fun checkDocument(filePath: String, @NonNull result: MethodChannel.Result) {
+    internal fun checkDocument(filePath: String, result: MethodChannel.Result) {
         val fileAlreadyExists = File(filePath)
         if (fileAlreadyExists.exists()) {
             result.success(true)
@@ -89,15 +90,26 @@ class OpenDocument(context: Context, activity: FlutterActivity?) {
         }
     }
 
+    @Suppress("DEPRECATION")
     private fun nameFolder(): String {
         return try {
-            val app = applicationContext.packageManager?.getApplicationInfo(
-                applicationContext.packageName,
-                0
-            )
-            return applicationContext.packageManager?.getApplicationLabel(app!!).toString()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                val app = applicationContext.packageManager.getPackageInfo(
+                    applicationContext.packageName,
+                    PackageManager.PackageInfoFlags.of(0)
+                )
+                return applicationContext.packageManager?.getApplicationLabel(app.applicationInfo)
+                    .toString()
+            } else {
+                val app = applicationContext.packageManager?.getApplicationInfo(
+                    applicationContext.packageName,
+                    0
+                )
+                return applicationContext.packageManager?.getApplicationLabel(app!!).toString()
+            }
         } catch (e: Exception) {
-            "NameFolder: " + e.localizedMessage;
+            e.printStackTrace()
+            "NameFolder" + e.localizedMessage
         }
     }
 
