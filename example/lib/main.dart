@@ -56,7 +56,8 @@ class _MyAppState extends State<MyApp> {
 
     final name = await OpenDocument.getNameFile(url: url);
 
-    final path = await OpenDocument.getPathDocument(folderName: "open_document_example");
+    final path = await OpenDocument.getPathDocument();
+
     filePath = "$path/$name";
 
     final isCheck = await OpenDocument.checkDocument(filePath: filePath);
@@ -118,7 +119,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   _pushScreen() async {
-    String name = await OpenDocument.getNameFolder(folderName: "open_document");
+    String name = await OpenDocument.getNameFolder();
 
     Navigator.of(context).push(
       MaterialPageRoute(

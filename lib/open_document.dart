@@ -10,16 +10,14 @@ class OpenDocument {
 
   ///take path from folder [folderName]
   ///return path
-  static Future<String> getPathDocument({required String folderName}) async {
-    return await OpenDocumentPlatform.instance
-        .getPathDocument(folderName: folderName);
+  static Future<String> getPathDocument() async {
+    return await OpenDocumentPlatform.instance.getPathDocument();
   }
 
   ///takes folder name as app name for Android and iOS
   /// for Windows pass the name in the param[folderName]
   static Future<String> getNameFolder({String? folderName}) async {
-    return await OpenDocumentPlatform.instance
-        .getNameFolder(folderName: folderName);
+    return await OpenDocumentPlatform.instance.getNameFolder();
   }
 
   ///get the url name

@@ -199,22 +199,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.2"
-  path_provider_platform_interface:
-    dependency: transitive
-    description:
-      name: path_provider_platform_interface
-      sha256: c2af5a8a6369992d915f8933dfc23172071001359d17896e83db8be57db8a397
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
-  path_provider_windows:
-    dependency: transitive
-    description:
-      name: path_provider_windows
-      sha256: "1cc550ec9881c47cb836f37e4db8f94405bd4e33b63efdd20cb9c7c68be6034b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.2"
   permission_handler:
     dependency: "direct main"
     description:
@@ -255,14 +239,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.0"
-  platform:
-    dependency: transitive
-    description:
-      name: platform
-      sha256: "4a451831508d7d6ca779f7ac6e212b4023dd5a7d08a27a63da33756410e32b76"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.0"
   plugin_platform_interface:
     dependency: transitive
     description:

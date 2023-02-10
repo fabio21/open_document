@@ -37,12 +37,12 @@ abstract class OpenDocumentPlatform extends PlatformInterface {
   }
   ///take path from folder [folderName]
   ///return path
-  Future<String> getPathDocument({required String folderName}) async {
+  Future<String> getPathDocument() async {
     throw UnimplementedError('getPathDocument has not been implemented.');
   }
   ///takes folder name as app name for Android and iOS
   /// for Windows pass the name in the param[folderName]
-  Future<String> getNameFolder({String? folderName}) async {
+  Future<String> getNameFolder() async {
     throw UnimplementedError('getPathDocument has not been implemented.');
   }
   ///get the url name

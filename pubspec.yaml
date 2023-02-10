@@ -15,7 +15,6 @@ dependencies:
     sdk: flutter
   archive: ^3.3.1
   flutter_slidable: ^2.0.0
-  path_provider_windows: ^2.1.2
   share_plus: ^4.0.10+1
   intl: ^0.17.0
   url_launcher: ^6.1.5
