@@ -2,7 +2,6 @@
 import 'package:permission_handler/permission_handler.dart';
 
 class PermissionsService {
-  late final Permission _permissionHandler;
 
   Future<bool> _requestPermission(Permission permission) async {
     await permission.request();

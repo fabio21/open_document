@@ -44,7 +44,7 @@ class ButtonShare extends StatelessWidget {
   ButtonStyle shape(bool enable) {
     return ElevatedButton.styleFrom(
         elevation: 8,
-        primary: enable
+        backgroundColor: enable
             ? StyleMyFile.elevatedButtonEnable
             : StyleMyFile.elevatedButtonDisable,
         textStyle: buildTextStyle(enable),

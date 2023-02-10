@@ -52,7 +52,7 @@ Create folder em Document
 
     final name = await OpenDocument.getNameFile(url: url);
 
-    final path = await OpenDocument.getPathDocument(folderName: "example");
+    final path = await OpenDocument.getPathDocument();
 
     filePath = "$path/$name";
 
@@ -100,7 +100,7 @@ of Viewing Your Screen with Your Files
 ---
 
     pushScreen() async {
-      String name = await OpenDocument.getNameFolder(widowsFolder: "Example");
+      String name = await OpenDocument.getNameFolder();
 
         Navigator.of(context).push(
         MaterialPageRoute(

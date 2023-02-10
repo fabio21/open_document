@@ -11,7 +11,7 @@
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
   
   <link rel="stylesheet" href="../static-assets/github.css?v1">
   <link rel="stylesheet" href="../static-assets/styles.css?v1">
@@ -21,13 +21,12 @@
 </head>
 
 
-<body data-base-href="../"
-      data-using-base-href="false">
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
 
 <div id="overlay-under-drawer"></div>
 
 <header id="title">
-  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">open_document</a></li>
     <li><a href="../open_document/open_document-library.html">open_document</a></li>
@@ -37,10 +36,16 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span class="material-symbols-outlined">
+        brightness_4
+      </span>
+    </label>
+  </div>
 </header>
-
 <main>
-
 
   <div id="dartdoc-main-content" class="main-content">
       <div>
@@ -78,7 +83,7 @@
 </dt>
 <dd class="inherited">
   The hash code for this object.
-  <div class="features">read-only, inherited</div>
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
 
 </dd>
 
@@ -89,7 +94,7 @@
 </dt>
 <dd class="inherited">
   A representation of the runtime type of the object.
-  <div class="features">read-only, inherited</div>
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
 
 </dd>
 
@@ -111,7 +116,7 @@
 </dt>
 <dd class="inherited">
   Invoked when a non-existent method or property is accessed.
-  <div class="features">inherited</div>
+  <div class="features"><span class="feature">inherited</span></div>
 
 </dd>
 
@@ -124,7 +129,7 @@
 </dt>
 <dd class="inherited">
   A string representation of this object.
-  <div class="features">inherited</div>
+  <div class="features"><span class="feature">inherited</span></div>
 
 </dd>
 
@@ -145,7 +150,7 @@
 </dt>
 <dd class="inherited">
   The equality operator.
-  <div class="features">inherited</div>
+  <div class="features"><span class="feature">inherited</span></div>
 
 </dd>
 
@@ -164,7 +169,7 @@
 
 </dt>
 <dd>
-  check if the path already exists in document folder <code>filePath</code>
+  Check if the path already exists in document folder <code>filePath</code>
   
 
 </dd>
@@ -177,35 +182,33 @@
 
 </dt>
 <dd>
-  get the url name
+  Get the url name
   
 
 </dd>
 
         <dt id="getNameFolder" class="callable">
-  <span class="name"><a href="../open_document/OpenDocument/getNameFolder.html">getNameFolder</a></span><span class="signature">(<wbr><span class="parameter" id="getNameFolder-param-widowsFolder">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">widowsFolder</span>}</span>)
+  <span class="name"><a href="../open_document/OpenDocument/getNameFolder.html">getNameFolder</a></span><span class="signature">(<wbr>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>
   </span>
   
 
 </dt>
 <dd>
-  takes folder name as app name for Android and iOS
-for Windows pass the name in the param<code>widowsFolder</code>
+  Get the folder name is the same as the application
   
 
 </dd>
 
         <dt id="getPathDocument" class="callable">
-  <span class="name"><a href="../open_document/OpenDocument/getPathDocument.html">getPathDocument</a></span><span class="signature">(<wbr><span class="parameter" id="getPathDocument-param-folderName">{<span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">folderName</span>}</span>)
+  <span class="name"><a href="../open_document/OpenDocument/getPathDocument.html">getPathDocument</a></span><span class="signature">(<wbr>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>
   </span>
   
 
 </dt>
 <dd>
-  take path from folder <code>folderName</code>
-return path
+  Return path folder
   
 
 </dd>
@@ -218,7 +221,7 @@ return path
 
 </dt>
 <dd>
-  open document <code>filePath</code>
+  Open the document by the indicated path <code>filePath</code>,
   
 
 </dd>
@@ -246,8 +249,8 @@ return path
 
     <h5>open_document library</h5>
     <ol>
-  <li class="section-title"><a href="../open_document/open_document-library.html#classes">Classes</a></li>
-  <li><a href="../open_document/OpenDocument-class.html">OpenDocument</a></li>
+      <li class="section-title"><a href="../open_document/open_document-library.html#classes">Classes</a></li>
+        <li><a href="../open_document/OpenDocument-class.html">OpenDocument</a></li>
 
 
 
@@ -267,18 +270,18 @@ return path
           <li><a href="../open_document/OpenDocument/OpenDocument.html">OpenDocument</a></li>
 
 
-    <li class="section-title inherited">
-      <a href="../open_document/OpenDocument-class.html#instance-properties">Properties</a>
-    </li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+        <li class="section-title inherited">
+          <a href="../open_document/OpenDocument-class.html#instance-properties">Properties</a>
+        </li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
 
-    <li class="section-title inherited"><a href="../open_document/OpenDocument-class.html#instance-methods">Methods</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
+        <li class="section-title inherited"><a href="../open_document/OpenDocument-class.html#instance-methods">Methods</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
 
-    <li class="section-title inherited"><a href="../open_document/OpenDocument-class.html#operators">Operators</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
+        <li class="section-title inherited"><a href="../open_document/OpenDocument-class.html#operators">Operators</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
 
 
 
@@ -298,7 +301,7 @@ return path
 <footer>
   <span class="no-break">
     open_document
-      1.0.4
+      1.0.6
   </span>
 
   
@@ -307,7 +310,7 @@ return path
 
 
 <script src="../static-assets/highlight.pack.js?v1"></script>
-<script src="../static-assets/script.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
 
 
 

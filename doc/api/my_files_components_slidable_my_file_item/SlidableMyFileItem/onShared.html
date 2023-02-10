@@ -11,7 +11,7 @@
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
   
   <link rel="stylesheet" href="../../static-assets/github.css?v1">
   <link rel="stylesheet" href="../../static-assets/styles.css?v1">
@@ -21,13 +21,12 @@
 </head>
 
 
-<body data-base-href="../../"
-      data-using-base-href="false">
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
 
 <div id="overlay-under-drawer"></div>
 
 <header id="title">
-  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">open_document</a></li>
     <li><a href="../../my_files_components_slidable_my_file_item/my_files_components_slidable_my_file_item-library.html">slidable_my_file_item</a></li>
@@ -38,10 +37,16 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span class="material-symbols-outlined">
+        brightness_4
+      </span>
+    </label>
+  </div>
 </header>
-
 <main>
-
 
   <div id="dartdoc-main-content" class="main-content">
       <div>
@@ -50,9 +55,10 @@
 </h1></div>
 
         <section class="multi-line-signature">
+          
           <a href="https://api.flutter.dev/flutter/dart-core/Function-class.html">Function</a>
           <span class="name ">onShared</span>
-          <div class="features">final</div>
+          <div class="features"><span class="feature">final</span></div>
 
         </section>
         
@@ -60,9 +66,7 @@
         
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">final Function onShared;
-
-</code></pre>
+  <pre class="language-dart"><code class="language-dart">final Function onShared;</code></pre>
 </section>
 
 
@@ -90,41 +94,41 @@
           <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/SlidableMyFileItem.html">SlidableMyFileItem</a></li>
 
 
-    <li class="section-title">
-      <a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem-class.html#instance-properties">Properties</a>
-    </li>
-    <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/date.html">date</a></li>
-    <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/file.html">file</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/Widget/hashCode.html">hashCode</a></li>
-    <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/isShare.html">isShare</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/Widget/key.html">key</a></li>
-    <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/lastPath.html">lastPath</a></li>
-    <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/onShared.html">onShared</a></li>
-    <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/pushScreen.html">pushScreen</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
-    <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/updateFilesList.html">updateFilesList</a></li>
+        <li class="section-title">
+          <a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem-class.html#instance-properties">Properties</a>
+        </li>
+          <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/date.html">date</a></li>
+          <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/file.html">file</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/Widget/hashCode.html">hashCode</a></li>
+          <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/isShare.html">isShare</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/Widget/key.html">key</a></li>
+          <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/lastPath.html">lastPath</a></li>
+          <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/onShared.html">onShared</a></li>
+          <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/pushScreen.html">pushScreen</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+          <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/updateFilesList.html">updateFilesList</a></li>
 
-    <li class="section-title"><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem-class.html#instance-methods">Methods</a></li>
-    <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/build.html">build</a></li>
-    <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/checkDeletingFiles.html">checkDeletingFiles</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html">createElement</a></li>
-    <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/createSnackBar.html">createSnackBar</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/debugDescribeChildren.html">debugDescribeChildren</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/Widget/debugFillProperties.html">debugFillProperties</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
-    <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/onDeleteFile.html">onDeleteFile</a></li>
-    <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/onPressed.html">onPressed</a></li>
-    <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/onStateRemove.html">onStateRemove</a></li>
-    <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/onUnzipFile.html">onUnzipFile</a></li>
-    <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/openDocument.html">openDocument</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toDiagnosticsNode.html">toDiagnosticsNode</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html">toString</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringDeep.html">toStringDeep</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringShallow.html">toStringShallow</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/Widget/toStringShort.html">toStringShort</a></li>
+        <li class="section-title"><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem-class.html#instance-methods">Methods</a></li>
+          <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/build.html">build</a></li>
+          <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/checkDeletingFiles.html">checkDeletingFiles</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html">createElement</a></li>
+          <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/createSnackBar.html">createSnackBar</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/debugDescribeChildren.html">debugDescribeChildren</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/Widget/debugFillProperties.html">debugFillProperties</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+          <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/onDeleteFile.html">onDeleteFile</a></li>
+          <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/onPressed.html">onPressed</a></li>
+          <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/onStateRemove.html">onStateRemove</a></li>
+          <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/onUnzipFile.html">onUnzipFile</a></li>
+          <li><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem/openDocument.html">openDocument</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toDiagnosticsNode.html">toDiagnosticsNode</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html">toString</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringDeep.html">toStringDeep</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringShallow.html">toStringShallow</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/Widget/toStringShort.html">toStringShort</a></li>
 
-    <li class="section-title inherited"><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem-class.html#operators">Operators</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/Widget/operator_equals.html">operator ==</a></li>
+        <li class="section-title inherited"><a href="../../my_files_components_slidable_my_file_item/SlidableMyFileItem-class.html#operators">Operators</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/Widget/operator_equals.html">operator ==</a></li>
 
 
 
@@ -141,7 +145,7 @@
 <footer>
   <span class="no-break">
     open_document
-      1.0.4
+      1.0.6
   </span>
 
   
@@ -150,7 +154,7 @@
 
 
 <script src="../../static-assets/highlight.pack.js?v1"></script>
-<script src="../../static-assets/script.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
 
 
 

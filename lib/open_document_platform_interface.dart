@@ -27,29 +27,25 @@ abstract class OpenDocumentPlatform extends PlatformInterface {
     throw UnimplementedError('inicilaze has not been implemented.');
   }
 
-  Future<String?> getPlatformVersion() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
-  }
-
-  ///open document [filePath]
+  ///Open the document by the indicated path [filePath],
   Future<void> openDocument({required String filePath}) async {
     throw UnimplementedError('openDocument has not been implemented.');
   }
-  ///take path from folder [folderName]
-  ///return path
+
+  ///Return path folder
   Future<String> getPathDocument() async {
     throw UnimplementedError('getPathDocument has not been implemented.');
   }
-  ///takes folder name as app name for Android and iOS
-  /// for Windows pass the name in the param[folderName]
+
+  ///Get the folder name is the same as the application
   Future<String> getNameFolder() async {
     throw UnimplementedError('getPathDocument has not been implemented.');
   }
-  ///get the url name
+  ///Get the url name
   Future<String> getNameFile({required String url}) async {
     throw UnimplementedError('getNameFile has not been implemented.');
   }
-  /// check if the path already exists in document folder [filePath]
+  /// Check if the path already exists in document folder [filePath]
   Future<bool> checkDocument({required String filePath}) async {
     throw UnimplementedError('checkDocument has not been implemented.');
   }
