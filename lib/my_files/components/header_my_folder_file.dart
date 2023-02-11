@@ -11,7 +11,6 @@ class HeaderMyFolderFile extends StatelessWidget {
     required this.lastPaths,
   }) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +23,7 @@ class HeaderMyFolderFile extends StatelessWidget {
   }
 
   ListView buildListView() {
-     final char = Platform.isWindows ? "\\" : "/";
+    final char = Platform.isWindows ? "\\" : "/";
     return ListView.separated(
       controller: scrollController,
       shrinkWrap: true,

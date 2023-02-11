@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -117,14 +115,15 @@ class ControllerMayFiles extends ChangeNotifier {
   }
 
   void shareFiles() async {
-    List<String> selectedFiles = [];
+    List<XFile> selectedFiles = [];
     CustomFileSystemEntity().map.forEach((key, value) {
-      if (value) selectedFiles.add(key.path);
+      if (value) selectedFiles.add(XFile(key.path));
     });
 
     try {
       if (!Platform.isWindows || Platform.isLinux)
-        Share.shareFiles(selectedFiles);
+        Share.shareXFiles(selectedFiles);
+
     } on PlatformException catch (e) {
       debugPrint("${e.message}");
     }
@@ -134,8 +133,8 @@ class ControllerMayFiles extends ChangeNotifier {
     return OpenDocument.openDocument(filePath: path);
   }
 
-  onUnzipFile(String path) => extractZip(
-      path: path, updateFilesList: () => updateFilesList());
+  onUnzipFile(String path) =>
+      extractZip(path: path, updateFilesList: () => updateFilesList());
 }
 
 /// Ex: 06/05/2020 3:04:00 PM (en) or 05/06/2020 15:04:00 (pt-BR)

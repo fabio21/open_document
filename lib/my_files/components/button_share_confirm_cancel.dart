@@ -1,11 +1,9 @@
-
-
 import 'package:flutter/material.dart';
 
 import '../init.dart';
 
 class ButtonShare extends StatelessWidget {
- final Function onClick;
+  final Function onClick;
 
   const ButtonShare({Key? key, required this.onClick}) : super(key: key);
   @override

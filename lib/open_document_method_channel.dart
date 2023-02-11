@@ -40,9 +40,7 @@ class MethodChannelOpenDocument extends OpenDocumentPlatform {
     try {
       String path = await methodChannel.invokeMethod("getPathDocument");
 
-      return Platform.isWindows
-          ? path.replaceAll("/", "\\")
-          : path;
+      return Platform.isWindows ? path.replaceAll("/", "\\") : path;
     } on PlatformException catch (e) {
       throw OpenDocumentException(
           'getPathDocument: ${e.stacktrace.toString()}');

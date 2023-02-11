@@ -45,19 +45,19 @@ class MyFilesItems extends StatelessWidget {
 
   BoxDecoration buildBoxDecorationLine() {
     return BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: Colors.black12, width: 1),
-        ),
-      );
+      border: Border(
+        bottom: BorderSide(color: Colors.black12, width: 1),
+      ),
+    );
   }
 
   actionDecision(bool isDirectory, bool isZipFile) {
     if (isShare && !isDirectory)
-     return onShared(item);
+      return onShared(item);
     else if (isDirectory)
-     return onPushScreen(item.path);
+      return onPushScreen(item.path);
     else if (isZipFile)
-     return onUnzipFile(item.path);
+      return onUnzipFile(item.path);
     else
       return onOpenDocument(item.path);
   }
@@ -73,8 +73,8 @@ class MyFilesItems extends StatelessWidget {
             children: [
               TextSpan(text: "$title \n"),
               TextSpan(
-                  text: convertDaTeyMdAddJMS(date),
-                  style: StyleMyFile.styleSubtitle,
+                text: convertDaTeyMdAddJMS(date),
+                style: StyleMyFile.styleSubtitle,
               ),
             ],
           ),
@@ -84,14 +84,13 @@ class MyFilesItems extends StatelessWidget {
   }
 
   buildIcon(bool isDirectory, bool isZipFile) {
-    if(isDirectory)
+    if (isDirectory)
       return StyleMyFile.folder;
-    else if(isZipFile)
+    else if (isZipFile)
       return StyleMyFile.folderZip;
     else
-    return StyleMyFile.description;
+      return StyleMyFile.description;
   }
-
 
   Widget buildContainerRadius() {
     return AnimatedContainer(
@@ -112,7 +111,7 @@ class MyFilesItems extends StatelessWidget {
 
   BoxDecoration buildBoxDecorationChecked() {
     return BoxDecoration(
-      border: Border.all(color: StyleMyFile.checkBoxBorder , width: 0.5),
+      border: Border.all(color: StyleMyFile.checkBoxBorder, width: 0.5),
       color: StyleMyFile.checkBoxBackground,
     );
   }
@@ -122,9 +121,10 @@ class MyFilesItems extends StatelessWidget {
       child: Icon(
         Icons.check,
         size: 24,
-        color: isChecked ? StyleMyFile.checkBoxIconColorActive : StyleMyFile.checkBoxIconColorNotActive,
+        color: isChecked
+            ? StyleMyFile.checkBoxIconColorActive
+            : StyleMyFile.checkBoxIconColorNotActive,
       ),
     );
   }
 }
-

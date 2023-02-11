@@ -13,7 +13,9 @@ class AlertCustomizedForDecisions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (Theme.of(context).platform == TargetPlatform.iOS)  ? createIosAlertDialog() : createAndroidAlertDialog();
+    return (Theme.of(context).platform == TargetPlatform.iOS)
+        ? createIosAlertDialog()
+        : createAndroidAlertDialog();
   }
 
   CupertinoAlertDialog createIosAlertDialog() {

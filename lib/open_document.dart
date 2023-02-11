@@ -28,4 +28,3 @@ class OpenDocument {
     return OpenDocumentPlatform.instance.checkDocument(filePath: filePath);
   }
 }
-

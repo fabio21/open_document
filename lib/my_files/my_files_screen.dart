@@ -46,20 +46,19 @@ class _MyFilesScreenState extends State<MyFilesScreen>
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: controllerMayFiles,
-      builder: (context, snapshot) {
-        return SafeArea(
-          top: false,
-          bottom: false,
-          child: Scaffold(
-            key: _scaffoldKey,
-            backgroundColor: Colors.white,
-            appBar: buildAppBar(),
-            body: body(context),
-          ),
-        );
-      }
-    );
+        animation: controllerMayFiles,
+        builder: (context, snapshot) {
+          return SafeArea(
+            top: false,
+            bottom: false,
+            child: Scaffold(
+              key: _scaffoldKey,
+              backgroundColor: Colors.white,
+              appBar: buildAppBar(),
+              body: body(context),
+            ),
+          );
+        });
   }
 
   buildAppBar() {
@@ -130,5 +129,4 @@ class _MyFilesScreenState extends State<MyFilesScreen>
     }
     return widgets;
   }
-
 }

@@ -1,4 +1,3 @@
-
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'open_document_method_channel.dart';
 
@@ -14,7 +13,7 @@ abstract class OpenDocumentPlatform extends PlatformInterface {
   ///
   /// Defaults to [MethodChannelOpenDocument].
   static OpenDocumentPlatform get instance => _instance;
-  
+
   /// Platform-specific implementations should set this with their own
   /// platform-specific class that extends [OpenDocumentPlatform] when
   /// they register themselves.
@@ -23,7 +22,7 @@ abstract class OpenDocumentPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  initialize(){
+  initialize() {
     throw UnimplementedError('inicilaze has not been implemented.');
   }
 
@@ -41,10 +40,12 @@ abstract class OpenDocumentPlatform extends PlatformInterface {
   Future<String> getNameFolder() async {
     throw UnimplementedError('getPathDocument has not been implemented.');
   }
+
   ///Get the url name
   Future<String> getNameFile({required String url}) async {
     throw UnimplementedError('getNameFile has not been implemented.');
   }
+
   /// Check if the path already exists in document folder [filePath]
   Future<bool> checkDocument({required String filePath}) async {
     throw UnimplementedError('checkDocument has not been implemented.');
