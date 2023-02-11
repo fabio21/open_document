@@ -13,17 +13,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  archive: ^3.3.1
+  archive: ^3.3.6
   flutter_slidable: ^2.0.0
-  share_plus: ^4.0.10+1
-  intl: ^0.17.0
+  share_plus: ^6.3.1
+  intl: ^0.18.0
+  #file: ^6.1.4
   plugin_platform_interface: ^2.1.2
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  dartdoc: ^6.0.1
+  dartdoc: ^6.1.5
 
 
 flutter:
