@@ -1,32 +1,17 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:open_document/my_files/model/extract_zip.dart';
-import 'package:open_document/my_files/model/style_my_file.dart';
-import 'package:open_document/open_document.dart';
-
-import 'my_files_dialog.dart';
-import 'my_files_items.dart';
+import 'package:open_document/my_files/init.dart';
 
 class SlidableMyFileItem extends StatelessWidget {
-  final Function onShared;
-  final Function pushScreen;
-  final bool isShare;
+  final ControllerMayFiles controllerMayFiles;
   final FileSystemEntity file;
   final DateTime date;
-  final String lastPath;
-  final Function updateFilesList;
 
   const SlidableMyFileItem({
     Key? key,
-    required this.onShared,
-    required this.pushScreen,
-    required this.isShare,
     required this.file,
     required this.date,
-    required this.lastPath,
-    required this.updateFilesList,
+    required this.controllerMayFiles,
   }) : super(key: key);
 
   @override
@@ -54,24 +39,13 @@ class SlidableMyFileItem extends StatelessWidget {
       child: MyFilesItems(
         item: file,
         date: date,
-        isShare: isShare,
-        onPushScreen: (String path) => pushScreen(path),
-        onUnzipFile: onUnzipFile,
-        onOpenDocument: (String path) => openDocument(path),
-        onShared: (file) => onShared(file),
+        isShare: controllerMayFiles.isShare,
+        onPushScreen: (String path) => controllerMayFiles.pushScreen(path),
+        onUnzipFile: controllerMayFiles.onUnzipFile,
+        onOpenDocument: (String path) => controllerMayFiles.openDocument(path),
+        onShared: (file) => controllerMayFiles.onShared(file),
       ),
     );
-  }
-
-  onUnzipFile(String path) => extractZip(
-      path: path, lastPath: lastPath, updateFilesList: () => onStateRemove());
-
-  onStateRemove() {
-    updateFilesList();
-  }
-
-  openDocument(String path) async {
-    return OpenDocument.openDocument(filePath: path);
   }
 
   checkDeletingFiles(BuildContext context, String path, bool isDirectory) {
@@ -115,7 +89,7 @@ class SlidableMyFileItem extends StatelessWidget {
             backgroundColor: StyleMyFile.snackBarErrorColor,
           ),
         )
-        .whenComplete(() => updateFilesList());
+        .whenComplete(() => controllerMayFiles.updateFilesList());
   }
 
   createSnackBar(BuildContext context,

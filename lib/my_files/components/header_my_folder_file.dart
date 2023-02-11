@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:open_document/my_files/model/style_my_file.dart';
+import 'package:open_document/my_files/init.dart';
 
 class HeaderMyFolderFile extends StatelessWidget {
+  final ScrollController scrollController;
+  final List<String> lastPaths;
+
   const HeaderMyFolderFile({
     Key? key,
     required this.scrollController,
     required this.lastPaths,
   }) : super(key: key);
-
-  final ScrollController scrollController;
-  final List<String> lastPaths;
 
 
   @override
@@ -24,13 +24,14 @@ class HeaderMyFolderFile extends StatelessWidget {
   }
 
   ListView buildListView() {
+     final char = Platform.isWindows ? "\\" : "/";
     return ListView.separated(
       controller: scrollController,
       shrinkWrap: true,
       scrollDirection: Axis.horizontal,
       itemCount: lastPaths.length,
       itemBuilder: (BuildContext context, int index) {
-        String path = lastPaths[index].split('/').last;
+        String path = lastPaths[index].split(char).last;
         return buildContainer(path, index);
       },
       separatorBuilder: (_, __) => buildContainerSeparator(),

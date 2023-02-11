@@ -1,6 +1,8 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:open_document/my_files/model/custom_file_system_entity.dart';
-import 'package:open_document/my_files/model/style_my_file.dart';
+
+import '../init.dart';
 
 class ButtonShare extends StatelessWidget {
  final Function onClick;

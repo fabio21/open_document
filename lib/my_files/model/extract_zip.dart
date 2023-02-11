@@ -1,22 +1,28 @@
-import 'dart:io';
 import 'package:archive/archive.dart';
 import 'package:archive/archive_io.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:open_document/my_files/init.dart';
 
 
- void extractZip({required String path, required String lastPath, required Function updateFilesList })  {
+
+
+ void extractZip({required String path, required Function updateFilesList })  {
     /// Read the Zip file from disk.
     try {
+      final char = Platform.isWindows ? "\\" : "/";
+      var nameZip = path.split(char).last;
+
       final bytes = File(path).readAsBytesSync();
       final archive = ZipDecoder().decodeBytes(bytes);
+     var pathLast = path.replaceAll(nameZip, "");
       /// Extract the contents of the Zip archive to disk.
       for (final file in archive) {
         final filename = file.name;
         if (file.isFile) {
           final data = file.content as List<int>;
-          File("$lastPath/$filename")..createSync(recursive: true)..writeAsBytesSync(data);
+          File("$pathLast$filename")..createSync(recursive: true)..writeAsBytesSync(data);
         } else {
-          Directory("$lastPath/$filename")..create(recursive: true);
+          Directory("$pathLast$filename")..create(recursive: true);
         }
       }
     } catch (e) {

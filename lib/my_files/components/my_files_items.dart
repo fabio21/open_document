@@ -1,6 +1,3 @@
-import 'dart:io';
-import 'package:intl/intl.dart';
-
 import 'package:flutter/material.dart';
 import 'package:open_document/my_files/init.dart';
 
@@ -26,7 +23,8 @@ class MyFilesItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final title = item.path.split("/").last;
+    var char = Platform.isWindows ? "\\" : "/";
+    final title = item.path.split(char).last;
     bool isDirectory = item.statSync().type.toString() == 'directory';
     bool isZipFile = title.split('.').last == 'zip';
     return InkWell(
@@ -130,10 +128,3 @@ class MyFilesItems extends StatelessWidget {
   }
 }
 
-
-/// Ex: 06/05/2020 3:04:00 PM (en) or 05/06/2020 15:04:00 (pt-BR)
-String convertDaTeyMdAddJMS(DateTime date) {
-//  LocaleMyFile();
-  // Intl.defaultLocale = "pt-BR";
-  return DateFormat.yMd().add_jms().format(date);
-}

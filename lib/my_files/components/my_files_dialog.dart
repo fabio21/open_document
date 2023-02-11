@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:open_document/my_files/init.dart';
-import 'alert_customized_for_decisions.dart';
 
 class MyFilesDialog extends StatelessWidget {
   final String path;

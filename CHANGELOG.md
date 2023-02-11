@@ -1,3 +1,7 @@
+## 1.0.6
+- fix android build
+- add windows native
+- update android 13 code  
 ## 1.0.5
 - flutter 3.0
 ## 1.0.4

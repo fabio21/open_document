@@ -1,11 +1,7 @@
-import 'dart:async';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:open_document/my_files/init.dart';
-import 'package:open_document/open_document.dart';
-import 'package:open_document/open_document_exception.dart';
 import 'package:open_document_example/permission_service.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:wakelock/wakelock.dart';
@@ -45,9 +41,8 @@ class _MyAppState extends State<MyApp> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     String filePath;
-
-    final url =
-        "https://fase.org.br/wp-content/uploads/2014/05/exemplo-de-pdf.pdf";
+    final url = "https://fase.org.br/wp-content/uploads/2014/05/exemplo-de-pdf.pdf";
+  //final url = "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-zip-file.zip";
     //
     // Platform messages may fail, so we use a try/catch PlatformException.
     //"https://file-examples-com.github.io/uploads/2017/02/file_example_XLS_5000.xls";
