@@ -1,3 +1,6 @@
+## 1.0.6+1
+- fix bug my folder
+- controller code refactoring
 ## 1.0.6
 - fix android build
 - add windows native
