@@ -1,5 +1,6 @@
 name: open_document
-description: Open document generate a folder and open the pdf, xlsx, docs, ppt and zip files,
+description:
+  Open document generate a folder and open the pdf, xlsx, docs, ppt and zip files,
   you can also locate your MyFilesScreen implement file and for style use StyleMyFile.
 version: 1.0.6+2
 publish_to: fsconceicao
@@ -18,16 +19,14 @@ dependencies:
   archive: ^3.3.6
   flutter_slidable: ^2.0.0
   share_plus: ^6.3.1
-  intl: ^0.17.0
+  intl: ^0.18.0
   #file: ^6.1.4
   plugin_platform_interface: ^2.1.2
-
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   dartdoc: ^6.1.5
-
 
 flutter:
   plugin:
@@ -41,37 +40,3 @@ flutter:
         pluginClass: OpenDocumentPlugin
       windows:
         pluginClass: OpenDocumentPlugin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
