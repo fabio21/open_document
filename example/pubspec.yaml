@@ -16,8 +16,8 @@ dependencies:
     path: ../
 
   cupertino_icons: ^1.0.5
-  dio: ^5.1.2
-  permission_handler: ^10.2.0
+  dio: ^5.2.1+1
+  permission_handler: ^10.4.2
  #  wakelock: ^0.6.2
 
 
