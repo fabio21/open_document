@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'init.dart';
 
+/// Created to show your files inside local folder
+/// - ***Required*** [filePath] local folder path
+/// - ***Optional*** [lastPath] last local folder, used when creating a folder within the local folder generating a new screen to display the internal files
+/// - ***Optional*** [loading] custom loading widget
+/// - ***Optional*** [error] custom loading widget
 class MyFilesScreen extends StatefulWidget {
   final String filePath;
   final List<String>? lastPath;

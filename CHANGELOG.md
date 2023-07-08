@@ -1,3 +1,5 @@
+## 1.0.6+2
+- fix deprecated ShareFiles
 ## 1.0.6+1
 - fix bug my folder
 - controller code refactoring

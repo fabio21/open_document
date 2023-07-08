@@ -123,7 +123,6 @@ class ControllerMayFiles extends ChangeNotifier {
     try {
       if (!Platform.isWindows || Platform.isLinux)
         Share.shareXFiles(selectedFiles);
-
     } on PlatformException catch (e) {
       debugPrint("${e.message}");
     }

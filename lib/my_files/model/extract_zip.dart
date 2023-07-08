@@ -3,7 +3,7 @@ import 'package:archive/archive_io.dart';
 import 'package:flutter/material.dart';
 import 'package:open_document/my_files/init.dart';
 
-/// extrair arquivo zip local folder and create new arquivo or new folder archive
+/// Extrair arquivo zip local folder and create new arquivo or new folder archive
 void extractZip({required String path, required Function updateFilesList}) {
   /// Read the Zip file from disk.
   try {

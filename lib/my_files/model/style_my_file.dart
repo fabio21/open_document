@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// - Customize the components displayed on the screen
+/// - This file is a singleton, change the inner elements before calling screen [MyFilesScreen]
 class StyleMyFile {
   static final StyleMyFile _instance = StyleMyFile._internal();
 
@@ -11,7 +13,6 @@ class StyleMyFile {
     Icons.share,
     color: Colors.white,
   );
-
 
   static Color backgroundHeader = Colors.blueGrey.shade500;
   static Color textColorHeader = Colors.white;

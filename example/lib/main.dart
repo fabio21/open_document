@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:open_document/my_files/init.dart';
 import 'package:open_document_example/permission_service.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:wakelock/wakelock.dart';
+//import 'package:wakelock/wakelock.dart';
 
 void main() {
   runApp(MaterialApp(home: MyApp()));
@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    Wakelock.enable();
+    // Wakelock.enable();
     super.initState();
     if (!Platform.isMacOS) initCheckPermission();
 

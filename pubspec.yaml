@@ -1,32 +1,32 @@
 name: open_document
-description: Open document generate a folder and open the pdf, xlsx, docs, ppt and zip files,
-  you can also locate your MyFilesScreen implement file and for style use StyleMyFile.
+description: OpenDocument generate a local folder, for file and document storage, also can open pdf, xlsx, docs, ppt and zip files.
+  You can also locate your files by implementing MyFilesScreen you can change folder styles and colors using StyleMyFile
 version: 1.0.6+2
-publish_to: fsconceicao
+
 
 homepage: https://github.com/fabio21
 repository: https://github.com/fabio21/open_document.git
 issue_tracker: https://github.com/fabio21/open_document/issues
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=2.18.0 <4.0.0"
   flutter: ">=1.20.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  archive: ^3.3.6
-  flutter_slidable: ^2.0.0
-  share_plus: ^6.3.1
-  intl: ^0.17.0
-  #file: ^6.1.4
-  plugin_platform_interface: ^2.1.2
+  archive: ^3.3.7
+  flutter_slidable: ^3.0.0
+  share_plus: ^7.0.2
+  intl: ^0.18.1
+
+  plugin_platform_interface: ^2.1.4
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  dartdoc: ^6.1.5
+  dartdoc: ^6.3.0
 
 
 flutter:
