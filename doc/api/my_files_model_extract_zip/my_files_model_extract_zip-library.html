@@ -38,8 +38,11 @@
   <div class="toggle" id="theme-button">
     <label for="theme">
       <input type="checkbox" id="theme" value="light-theme">
-      <span class="material-symbols-outlined">
+      <span id="dark-theme-button" class="material-symbols-outlined">
         brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
       </span>
     </label>
   </div>
@@ -50,7 +53,6 @@
     
       <div>
 <h1><span class="kind-library">extract_zip</span> library 
-    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
  
 </h1></div>
 
@@ -67,14 +69,14 @@
 
       <dl class="callables">
         <dt id="extractZip" class="callable">
-  <span class="name"><a href="../my_files_model_extract_zip/extractZip.html">extractZip</a></span><span class="signature">(<wbr><span class="parameter" id="extractZip-param-path">{<span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">path</span>, </span><span class="parameter" id="extractZip-param-lastPath"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">lastPath</span>, </span><span class="parameter" id="extractZip-param-updateFilesList"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Function-class.html">Function</a></span> <span class="parameter-name">updateFilesList</span>}</span>)
+  <span class="name"><a href="../my_files_model_extract_zip/extractZip.html">extractZip</a></span><span class="signature">(<wbr><span class="parameter" id="extractZip-param-path">{<span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">path</span>, </span><span class="parameter" id="extractZip-param-updateFilesList"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Function-class.html">Function</a></span> <span class="parameter-name">updateFilesList</span>}</span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
 
 </dt>
 <dd>
-  
+  Extrair arquivo zip local folder and create new arquivo or new folder archive
   
 
 </dd>
@@ -105,6 +107,7 @@
       <li class="section-title">Libraries</li>
       <li><a href="../my_files_components_alert_customized_for_decisions/my_files_components_alert_customized_for_decisions-library.html">alert_customized_for_decisions</a></li>
       <li><a href="../my_files_components_button_share_confirm_cancel/my_files_components_button_share_confirm_cancel-library.html">button_share_confirm_cancel</a></li>
+      <li><a href="../my_files_controller_my_files/my_files_controller_my_files-library.html">controller_my_files</a></li>
       <li><a href="../my_files_model_custom_file_system_entity/my_files_model_custom_file_system_entity-library.html">custom_file_system_entity</a></li>
       <li><a href="../my_files_model_extract_zip/my_files_model_extract_zip-library.html">extract_zip</a></li>
       <li><a href="../my_files_components_header_my_folder_file/my_files_components_header_my_folder_file-library.html">header_my_folder_file</a></li>
@@ -145,7 +148,7 @@
 <footer>
   <span class="no-break">
     open_document
-      1.0.6
+      1.0.6+3
   </span>
 
   

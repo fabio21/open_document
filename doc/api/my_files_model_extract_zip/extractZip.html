@@ -39,8 +39,11 @@
   <div class="toggle" id="theme-button">
     <label for="theme">
       <input type="checkbox" id="theme" value="light-theme">
-      <span class="material-symbols-outlined">
+      <span id="dark-theme-button" class="material-symbols-outlined">
         brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
       </span>
     </label>
   </div>
@@ -50,7 +53,6 @@
   <div id="dartdoc-main-content" class="main-content">
       <div>
 <h1><span class="kind-function">extractZip</span> function 
-    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
  
 </h1></div>
 
@@ -59,7 +61,6 @@
 
 <span class="returntype">void</span>
 <span class="name ">extractZip</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="extractZip-param-path">{<span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">path</span>, </span></li>
-<li><span class="parameter" id="extractZip-param-lastPath"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">lastPath</span>, </span></li>
 <li><span class="parameter" id="extractZip-param-updateFilesList"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Function-class.html">Function</a></span> <span class="parameter-name">updateFilesList</span>}</span></li>
 </ol>)
 
@@ -67,31 +68,41 @@
 
     </section>
     
+<section class="desc markdown">
+  <p>Extrair arquivo zip local folder and create new arquivo or new folder archive</p>
+</section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">void extractZip({required String path, required String lastPath, required Function updateFilesList })  {
-   &#47;&#47;&#47; Read the Zip file from disk.
-   try {
-     final bytes = File(path).readAsBytesSync();
-     final archive = ZipDecoder().decodeBytes(bytes);
-     &#47;&#47;&#47; Extract the contents of the Zip archive to disk.
-     for (final file in archive) {
-       final filename = file.name;
-       if (file.isFile) {
-         final data = file.content as List&lt;int&gt;;
-         File(&quot;$lastPath&#47;$filename&quot;)..createSync(recursive: true)..writeAsBytesSync(data);
-       } else {
-         Directory(&quot;$lastPath&#47;$filename&quot;)..create(recursive: true);
-       }
-     }
-   } catch (e) {
-     debugPrint(e.toString());
-   }
-   updateFilesList();
- }</code></pre>
+  <pre class="language-dart"><code class="language-dart">void extractZip({required String path, required Function updateFilesList}) {
+  &#47;&#47;&#47; Read the Zip file from disk.
+  try {
+    final char = Platform.isWindows ? &quot;\\&quot; : &quot;&#47;&quot;;
+    var nameZip = path.split(char).last;
+
+    final bytes = File(path).readAsBytesSync();
+    final archive = ZipDecoder().decodeBytes(bytes);
+    var pathLast = path.replaceAll(nameZip, &quot;&quot;);
+
+    &#47;&#47;&#47; Extract the contents of the Zip archive to disk.
+    for (final file in archive) {
+      final filename = file.name;
+      if (file.isFile) {
+        final data = file.content as List&lt;int&gt;;
+        File(&quot;$pathLast$filename&quot;)
+          ..createSync(recursive: true)
+          ..writeAsBytesSync(data);
+      } else {
+        Directory(&quot;$pathLast$filename&quot;)..create(recursive: true);
+      }
+    }
+  } catch (e) {
+    debugPrint(e.toString());
+  }
+  updateFilesList();
+}</code></pre>
 </section>
 
 
@@ -135,7 +146,7 @@
 <footer>
   <span class="no-break">
     open_document
-      1.0.6
+      1.0.6+3
   </span>
 
   

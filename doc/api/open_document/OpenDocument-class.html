@@ -39,8 +39,11 @@
   <div class="toggle" id="theme-button">
     <label for="theme">
       <input type="checkbox" id="theme" value="light-theme">
-      <span class="material-symbols-outlined">
+      <span id="dark-theme-button" class="material-symbols-outlined">
         brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
       </span>
     </label>
   </div>
@@ -50,11 +53,18 @@
   <div id="dartdoc-main-content" class="main-content">
       <div>
 <h1><span class="kind-class">OpenDocument</span> class 
-    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
  
 </h1></div>
 
     
+<section class="desc markdown">
+  <ul>
+<li>Serves to create a local folder with the name of the app</li>
+<li>Storage of documents and files</li>
+<li>It has the power to open the zip creating a new folder with
+the name of the file using the plugin <a href="https://pub.dev/documentation/archive/3.3.7/archive_io/Archive-class.html">Archive</a></li>
+</ul>
+</section>
 
 
 
@@ -115,7 +125,7 @@
 
 </dt>
 <dd class="inherited">
-  Invoked when a non-existent method or property is accessed.
+  Invoked when a nonexistent method or property is accessed.
   <div class="features"><span class="feature">inherited</span></div>
 
 </dd>
@@ -169,7 +179,9 @@
 
 </dt>
 <dd>
-  Check if the path already exists in document folder <code>filePath</code>
+  
+<li>Check if the path already exists in document folder <code>filePath</code></li>
+
   
 
 </dd>
@@ -182,7 +194,9 @@
 
 </dt>
 <dd>
-  Get the url name
+  
+<li>Get the url name</li>
+
   
 
 </dd>
@@ -195,7 +209,9 @@
 
 </dt>
 <dd>
-  Get the folder name is the same as the application
+  
+<li>Get the folder name is the same as the application</li>
+
   
 
 </dd>
@@ -208,7 +224,9 @@
 
 </dt>
 <dd>
-  Return path folder
+  
+<li>Return path folder</li>
+
   
 
 </dd>
@@ -221,7 +239,9 @@
 
 </dt>
 <dd>
-  Open the document by the indicated path <code>filePath</code>,
+  
+<li>Open the document by the indicated path <code>filePath</code>,</li>
+
   
 
 </dd>
@@ -301,7 +321,7 @@
 <footer>
   <span class="no-break">
     open_document
-      1.0.6
+      1.0.6+3
   </span>
 
   

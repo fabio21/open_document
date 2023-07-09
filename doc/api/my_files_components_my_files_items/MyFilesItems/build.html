@@ -40,8 +40,11 @@
   <div class="toggle" id="theme-button">
     <label for="theme">
       <input type="checkbox" id="theme" value="light-theme">
-      <span class="material-symbols-outlined">
+      <span id="dark-theme-button" class="material-symbols-outlined">
         brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
       </span>
     </label>
   </div>
@@ -51,7 +54,6 @@
   <div id="dartdoc-main-content" class="main-content">
       <div>
 <h1><span class="kind-method">build</span> method 
-    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
 </h1></div>
 
     <section class="multi-line-signature">
@@ -112,7 +114,8 @@ and</li>
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
-  final title = item.path.split(&quot;&#47;&quot;).last;
+  var char = Platform.isWindows ? &quot;\\&quot; : &quot;&#47;&quot;;
+  final title = item.path.split(char).last;
   bool isDirectory = item.statSync().type.toString() == &#39;directory&#39;;
   bool isZipFile = title.split(&#39;.&#39;).last == &#39;zip&#39;;
   return InkWell(
@@ -208,7 +211,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     open_document
-      1.0.6
+      1.0.6+3
   </span>
 
   

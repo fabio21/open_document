@@ -39,8 +39,11 @@
   <div class="toggle" id="theme-button">
     <label for="theme">
       <input type="checkbox" id="theme" value="light-theme">
-      <span class="material-symbols-outlined">
+      <span id="dark-theme-button" class="material-symbols-outlined">
         brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
       </span>
     </label>
   </div>
@@ -50,7 +53,6 @@
   <div id="dartdoc-main-content" class="main-content">
       <div>
 <h1><span class="kind-class">MyFilesCore</span> class 
-    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
  
 </h1></div>
 
@@ -88,7 +90,7 @@
 
     <dl class="constructor-summary-list">
         <dt id="MyFilesCore" class="callable">
-          <span class="name"><a href="../my_files_components_my_files_core/MyFilesCore/MyFilesCore.html">MyFilesCore</a></span><span class="signature">(<span class="parameter" id="-param-key">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="-param-widgets"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>&gt;</span></span> <span class="parameter-name">widgets</span>, </span><span class="parameter" id="-param-lastPaths"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">lastPaths</span>, </span><span class="parameter" id="-param-scrollController"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/ScrollController-class.html">ScrollController</a></span> <span class="parameter-name">scrollController</span>, </span><span class="parameter" id="-param-isShare"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isShare</span> = <span class="default-value">false</span>, </span><span class="parameter" id="-param-onClick"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Function-class.html">Function</a></span> <span class="parameter-name">onClick</span>}</span>)</span>
+          <span class="name"><a href="../my_files_components_my_files_core/MyFilesCore/MyFilesCore.html">MyFilesCore</a></span><span class="signature">(<span class="parameter" id="-param-key">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="-param-widgets"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>&gt;</span></span> <span class="parameter-name">widgets</span>, </span><span class="parameter" id="-param-controllerMayFiles"><span>required</span> <span class="type-annotation"><a href="../my_files_controller_my_files/ControllerMayFiles-class.html">ControllerMayFiles</a></span> <span class="parameter-name">controllerMayFiles</span>}</span>)</span>
         </dt>
         <dd>
           
@@ -101,6 +103,17 @@
       <h2>Properties</h2>
 
       <dl class="properties">
+        <dt id="controllerMayFiles" class="property">
+  <span class="name"><a href="../my_files_components_my_files_core/MyFilesCore/controllerMayFiles.html">controllerMayFiles</a></span>
+  <span class="signature">&#8594; <a href="../my_files_controller_my_files/ControllerMayFiles-class.html">ControllerMayFiles</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
         <dt id="hashCode" class="property inherited">
   <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/hashCode.html">hashCode</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> 
@@ -109,17 +122,6 @@
 <dd class="inherited">
   The hash code for this object.
   <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
-
-</dd>
-
-        <dt id="isShare" class="property">
-  <span class="name"><a href="../my_files_components_my_files_core/MyFilesCore/isShare.html">isShare</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> 
-
-</dt>
-<dd>
-  
-  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 
@@ -134,28 +136,6 @@
 
 </dd>
 
-        <dt id="lastPaths" class="property">
-  <span class="name"><a href="../my_files_components_my_files_core/MyFilesCore/lastPaths.html">lastPaths</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span> 
-
-</dt>
-<dd>
-  
-  <div class="features"><span class="feature">final</span></div>
-
-</dd>
-
-        <dt id="onClick" class="property">
-  <span class="name"><a href="../my_files_components_my_files_core/MyFilesCore/onClick.html">onClick</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Function-class.html">Function</a></span> 
-
-</dt>
-<dd>
-  
-  <div class="features"><span class="feature">final</span></div>
-
-</dd>
-
         <dt id="runtimeType" class="property inherited">
   <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Type-class.html">Type</a></span> 
@@ -164,17 +144,6 @@
 <dd class="inherited">
   A representation of the runtime type of the object.
   <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
-
-</dd>
-
-        <dt id="scrollController" class="property">
-  <span class="name"><a href="../my_files_components_my_files_core/MyFilesCore/scrollController.html">scrollController</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/widgets/ScrollController-class.html">ScrollController</a></span> 
-
-</dt>
-<dd>
-  
-  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 
@@ -285,7 +254,7 @@ children.
 
 </dt>
 <dd class="inherited">
-  Invoked when a non-existent method or property is accessed.
+  Invoked when a nonexistent method or property is accessed.
   <div class="features"><span class="feature">inherited</span></div>
 
 </dd>
@@ -426,13 +395,10 @@ tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode
         <li class="section-title">
           <a href="../my_files_components_my_files_core/MyFilesCore-class.html#instance-properties">Properties</a>
         </li>
+          <li><a href="../my_files_components_my_files_core/MyFilesCore/controllerMayFiles.html">controllerMayFiles</a></li>
           <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/Widget/hashCode.html">hashCode</a></li>
-          <li><a href="../my_files_components_my_files_core/MyFilesCore/isShare.html">isShare</a></li>
           <li class="inherited"><a href="https://api.flutter.dev/flutter/widgets/Widget/key.html">key</a></li>
-          <li><a href="../my_files_components_my_files_core/MyFilesCore/lastPaths.html">lastPaths</a></li>
-          <li><a href="../my_files_components_my_files_core/MyFilesCore/onClick.html">onClick</a></li>
           <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
-          <li><a href="../my_files_components_my_files_core/MyFilesCore/scrollController.html">scrollController</a></li>
           <li><a href="../my_files_components_my_files_core/MyFilesCore/widgets.html">widgets</a></li>
 
         <li class="section-title"><a href="../my_files_components_my_files_core/MyFilesCore-class.html#instance-methods">Methods</a></li>
@@ -464,7 +430,7 @@ tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode
 <footer>
   <span class="no-break">
     open_document
-      1.0.6
+      1.0.6+3
   </span>
 
   
