@@ -1,7 +1,7 @@
 name: open_document
 description: OpenDocument generate a local folder, for file and document storage, also can open pdf, xlsx, docs, ppt and zip files.
   You can also locate your files by implementing MyFilesScreen you can change folder styles and colors using StyleMyFile
-version: 1.0.6+3
+version: 1.0.7
 
 
 homepage: https://github.com/fabio21
@@ -26,7 +26,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  dartdoc: ^6.3.0
+  dartdoc: "6.2.2"
 
 
 flutter:

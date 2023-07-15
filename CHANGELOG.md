@@ -1,4 +1,4 @@
-## 1.0.6+3
+## 1.0.7
 - updating package versions
     *  archive: ^3.3.7
     *  flutter_slidable: ^3.0.0

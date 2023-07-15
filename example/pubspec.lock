@@ -85,10 +85,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio
-      sha256: "347d56c26d63519552ef9a569f2a593dda99a81fdbdff13c584b7197cfe05059"
+      sha256: a9d76e72985d7087eb7c5e7903224ae52b337131518d127c554b9405936752b8
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.2"
+    version: "5.2.1+1"
   fake_async:
     dependency: transitive
     description:
@@ -198,7 +198,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.0.6+2"
+    version: "1.0.7"
   path:
     dependency: transitive
     description:
@@ -259,42 +259,42 @@ packages:
     dependency: "direct main"
     description:
       name: permission_handler
-      sha256: "33c6a1253d1f95fd06fa74b65b7ba907ae9811f9d5c1d3150e51417d04b8d6a8"
+      sha256: "415af30ba76a84faccfe1eb251fe1e4fdc790f876924c65ad7d6ed7a1404bcd6"
       url: "https://pub.dev"
     source: hosted
-    version: "10.2.0"
+    version: "10.4.2"
   permission_handler_android:
     dependency: transitive
     description:
       name: permission_handler_android
-      sha256: d8cc6a62ded6d0f49c6eac337e080b066ee3bce4d405bd9439a61e1f1927bfe8
+      sha256: "3b61f3da3b1c83bc3fb6a2b431e8dab01d0e5b45f6a3d9c7609770ec88b2a89e"
       url: "https://pub.dev"
     source: hosted
-    version: "10.2.1"
+    version: "10.3.0"
   permission_handler_apple:
     dependency: transitive
     description:
       name: permission_handler_apple
-      sha256: ee96ac32f5a8e6f80756e25b25b9f8e535816c8e6665a96b6d70681f8c4f7e85
+      sha256: "7a187b671a39919462af2b5e813148365b71a615979165a119868d667fe90c03"
       url: "https://pub.dev"
     source: hosted
-    version: "9.0.8"
+    version: "9.1.3"
   permission_handler_platform_interface:
     dependency: transitive
     description:
       name: permission_handler_platform_interface
-      sha256: "68abbc472002b5e6dfce47fe9898c6b7d8328d58b5d2524f75e277c07a97eb84"
+      sha256: "463a07cb7cc6c758a7a1c7da36ce666bb80a0b4b5e92df0fa36872e0ed456993"
       url: "https://pub.dev"
     source: hosted
-    version: "3.9.0"
+    version: "3.11.1"
   permission_handler_windows:
     dependency: transitive
     description:
       name: permission_handler_windows
-      sha256: f67cab14b4328574938ecea2db3475dad7af7ead6afab6338772c5f88963e38b
+      sha256: cc074aace208760f1eee6aa4fae766b45d947df85bc831cde77009cdb4720098
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.2"
+    version: "0.1.3"
   platform:
     dependency: transitive
     description:
