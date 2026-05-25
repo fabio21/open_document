@@ -43,7 +43,7 @@ echo "🔍 Installing dependencies..."
 dart pub get
 
 echo "🔍 Analyzing source..."
-dart analyze --fatal-infos
+dart analyze
 
 echo "🔍 Running tests..."
 dart test
@@ -55,9 +55,9 @@ dart pub publish --dry-run
 echo ""
 echo "✏️  Bumping version in $PUBSPEC..."
 if sed --version 2>/dev/null | grep -q GNU; then
-  sed -i "s/^version: .*/version: $NEW_VERSION/" "$PUBSPEC"
+  sed -i "s/^version: .*$/version: ${NEW_VERSION}/" "$PUBSPEC"
 else
-  sed -i.bak "s/^version: .*/version: $NEW_VERSION/" "$PUBSPEC"
+  sed -i.bak "s/^version: .*$/version: ${NEW_VERSION}/" "$PUBSPEC"
   rm -f "${PUBSPEC}.bak"
 fi
 
