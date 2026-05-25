@@ -2,10 +2,10 @@
 
 Used to create a folder on the user's mobile phone and Desktop;
 
-## License and pricing
+## License and usage
 
 - License: [MIT](LICENSE)
-- Pricing: free to use, including commercial projects.
+- Usage: free to use, including commercial projects.
 
 - Android stays inside documents with the name of your app
 - iOs is in your app's name files
