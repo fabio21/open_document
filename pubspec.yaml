@@ -22,12 +22,10 @@ dependencies:
 
   plugin_platform_interface: ^2.1.4
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
   dartdoc: "6.2.2"
-
 
 flutter:
   plugin:
@@ -41,37 +39,3 @@ flutter:
         pluginClass: OpenDocumentPlugin
       windows:
         pluginClass: OpenDocumentPlugin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
