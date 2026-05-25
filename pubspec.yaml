@@ -15,10 +15,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  archive: ^4.0.4
-  flutter_slidable: ^4.0.0
-  share_plus: ^10.1.4
-  intl: ^0.18.1
+  archive: ^3.3.7
+  flutter_slidable: ^3.0.0
+  share_plus: ^7.0.2
+  intl: ">=0.18.1 <0.20.0"
 
   plugin_platform_interface: ^2.1.4
 
