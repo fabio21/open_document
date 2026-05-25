@@ -40,13 +40,13 @@ fi
 # ── Install dependencies and run checks ──────────────────────────────────
 echo ""
 echo "🔍 Installing dependencies..."
-dart pub get
+flutter pub get
 
 echo "🔍 Analyzing source..."
-dart analyze
+flutter analyze
 
 echo "🔍 Running tests..."
-dart test
+flutter test
 
 echo "🔍 Checking publish readiness..."
 dart pub publish --dry-run
