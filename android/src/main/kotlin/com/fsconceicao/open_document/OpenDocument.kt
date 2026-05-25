@@ -98,14 +98,17 @@ class OpenDocument(context: Context, activity: FlutterActivity?) {
                     applicationContext.packageName,
                     PackageManager.PackageInfoFlags.of(0)
                 )
-                return applicationContext.packageManager?.getApplicationLabel(app.applicationInfo)
-                    .toString()
+                app.applicationInfo?.let {
+                    applicationContext.packageManager?.getApplicationLabel(it).toString()
+                } ?: "UnknownApp"
             } else {
                 val app = applicationContext.packageManager?.getApplicationInfo(
                     applicationContext.packageName,
                     0
                 )
-                return applicationContext.packageManager?.getApplicationLabel(app!!).toString()
+                app?.let {
+                    applicationContext.packageManager.getApplicationLabel(it).toString()
+                } ?: "UnknownApp"
             }
         } catch (e: Exception) {
             e.printStackTrace()

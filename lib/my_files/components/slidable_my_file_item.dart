@@ -29,8 +29,8 @@ class SlidableMyFileItem extends StatelessWidget {
           SlidableAction(
             backgroundColor:
                 StyleMyFile.iconSlideActionModel.color ?? Color(0xFFFE4A49),
-            onPressed: (_) =>
-                checkDeletingFiles(context, file.path, isDirectory),
+            onPressed:
+                (_) => checkDeletingFiles(context, file.path, isDirectory),
             icon: StyleMyFile.iconSlideActionModel.icon,
             foregroundColor: StyleMyFile.iconSlideActionModel.foregroundColor,
           ),
@@ -62,11 +62,7 @@ class SlidableMyFileItem extends StatelessWidget {
     );
   }
 
-  void onPressed(
-    BuildContext context,
-    String path,
-    bool isDirectory,
-  ) {
+  void onPressed(BuildContext context, String path, bool isDirectory) {
     onDeleteFile(context, path, isDirectory);
     Navigator.of(context).pop();
   }
@@ -92,8 +88,11 @@ class SlidableMyFileItem extends StatelessWidget {
         .whenComplete(() => controllerMayFiles.updateFilesList());
   }
 
-  createSnackBar(BuildContext context,
-      {required String message, required Color backgroundColor}) {
+  createSnackBar(
+    BuildContext context, {
+    required String message,
+    required Color backgroundColor,
+  }) {
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),

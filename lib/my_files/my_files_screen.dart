@@ -51,19 +51,20 @@ class _MyFilesScreenState extends State<MyFilesScreen>
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-        animation: controllerMayFiles,
-        builder: (context, snapshot) {
-          return SafeArea(
-            top: false,
-            bottom: false,
-            child: Scaffold(
-              key: _scaffoldKey,
-              backgroundColor: Colors.white,
-              appBar: buildAppBar(),
-              body: body(context),
-            ),
-          );
-        });
+      animation: controllerMayFiles,
+      builder: (context, snapshot) {
+        return SafeArea(
+          top: false,
+          bottom: false,
+          child: Scaffold(
+            key: _scaffoldKey,
+            backgroundColor: Colors.white,
+            appBar: buildAppBar(),
+            body: body(context),
+          ),
+        );
+      },
+    );
   }
 
   buildAppBar() {
@@ -72,15 +73,16 @@ class _MyFilesScreenState extends State<MyFilesScreen>
       centerTitle: false,
       titleSpacing: 0,
       elevation: Platform.isAndroid ? 8.0 : 0,
-      actions: controllerMayFiles.decision()
-          ? [
-              IconButton(
-                padding: EdgeInsets.only(right: 24),
-                icon: StyleMyFile.appBarShare,
-                onPressed: () => controllerMayFiles.openSelection(),
-              ),
-            ]
-          : null,
+      actions:
+          controllerMayFiles.decision()
+              ? [
+                IconButton(
+                  padding: EdgeInsets.only(right: 24),
+                  icon: StyleMyFile.appBarShare,
+                  onPressed: () => controllerMayFiles.openSelection(),
+                ),
+              ]
+              : null,
     );
   }
 
@@ -107,10 +109,7 @@ class _MyFilesScreenState extends State<MyFilesScreen>
       widget.loading ?? Center(child: CircularProgressIndicator());
 
   Widget widgetError(AsyncSnapshot<List<FileSystemEntity>> snapshot) =>
-      widget.error ??
-      Center(
-        child: Text("${snapshot.error}"),
-      );
+      widget.error ?? Center(child: Text("${snapshot.error}"));
 
   MyFilesCore myFilesCore(List<FileSystemEntity> list) {
     controllerMayFiles.updateList(list);

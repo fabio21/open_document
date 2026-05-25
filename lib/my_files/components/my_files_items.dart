@@ -45,9 +45,7 @@ class MyFilesItems extends StatelessWidget {
 
   BoxDecoration buildBoxDecorationLine() {
     return BoxDecoration(
-      border: Border(
-        bottom: BorderSide(color: Colors.black12, width: 1),
-      ),
+      border: Border(bottom: BorderSide(color: Colors.black12, width: 1)),
     );
   }
 
@@ -99,13 +97,11 @@ class MyFilesItems extends StatelessWidget {
       width: isShare ? 30 : 0,
       height: isShare ? 30 : 0,
       alignment: Alignment.center,
-      margin: EdgeInsets.only(
-        right: 10,
-        left: 14,
-      ),
+      margin: EdgeInsets.only(right: 10, left: 14),
       decoration: buildBoxDecorationChecked(),
       child: buildCheckIcon(
-          isChecked: CustomFileSystemEntity().map[item] ?? false),
+        isChecked: CustomFileSystemEntity().map[item] ?? false,
+      ),
     );
   }
 

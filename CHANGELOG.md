@@ -1,3 +1,5 @@
+## 1.0.8
+- updated packages and compatibility with Flutter 3.29
 ## 1.0.7
 - updating package versions
     *  archive: ^3.3.7

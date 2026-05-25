@@ -26,14 +26,17 @@ class MyFilesCore extends StatelessWidget {
 
   Expanded buildBodyList() {
     return Expanded(
-        child: widgets.isNotEmpty
-            ? ListView(children: widgets)
-            : StyleMyFile.emptyFolder);
+      child:
+          widgets.isNotEmpty
+              ? ListView(children: widgets)
+              : StyleMyFile.emptyFolder,
+    );
   }
 
   _scrollToEnd() async {
-    controllerMayFiles.scrollController
-        .jumpTo(controllerMayFiles.scrollController.position.maxScrollExtent);
+    controllerMayFiles.scrollController.jumpTo(
+      controllerMayFiles.scrollController.position.maxScrollExtent,
+    );
   }
 
   Widget buildHeader() {

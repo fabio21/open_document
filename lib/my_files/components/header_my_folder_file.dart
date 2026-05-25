@@ -42,7 +42,7 @@ class HeaderMyFolderFile extends StatelessWidget {
       alignment: Alignment.center,
       child: Icon(
         Icons.chevron_right,
-        color: (StyleMyFile.textColorHeader).withOpacity(0.55),
+        color: (StyleMyFile.textColorHeader).withValues(alpha: 0.55),
       ),
     );
   }
@@ -56,7 +56,7 @@ class HeaderMyFolderFile extends StatelessWidget {
             fontSize: 14,
             color: (index == (lastPaths.length - 1))
                 ? (StyleMyFile.textColorHeader)
-                : (StyleMyFile.textColorHeader).withOpacity(0.75)),
+                : (StyleMyFile.textColorHeader).withValues(alpha: 0.75)),
         textAlign: TextAlign.center,
       ),
     );
