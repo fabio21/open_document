@@ -1,14 +1,15 @@
-name: Dart CI
+name: Publish to pub.dev
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    tags:
+      - 'v[0-9]+\.[0-9]+\.[0-9]+*'
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
 
     steps:
       - uses: actions/checkout@v4
@@ -21,20 +22,23 @@ jobs:
         id: version
         run: |
           VERSION=$(grep '^version:' pubspec.yaml | awk '{print $2}')
+          TAG="${GITHUB_REF#refs/tags/v}"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-          echo "📦 Package version: $VERSION"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "📦 Package version: $VERSION  |  Git tag: $TAG"
+          if [ "$VERSION" != "$TAG" ]; then
+            echo "❌ pubspec.yaml version ($VERSION) does not match git tag ($TAG)"
+            exit 1
+          fi
 
       - name: Install dependencies
         run: flutter pub get
-
-      - name: Verify formatting
-        # Non-blocking: flags style drift without failing the build.
-        # Remove continue-on-error once existing formatting issues are resolved.
-        run: dart format --output=none --set-exit-if-changed .
-        continue-on-error: true
 
       - name: Analyze project source
         run: flutter analyze
 
       - name: Run tests
         run: flutter test
+
+      - name: Publish package
+        run: dart pub publish --force
