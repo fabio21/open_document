@@ -1,7 +1,7 @@
 package com.fsconceicao.open_document
 
+import android.app.Activity
 import android.util.Log
-import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -42,7 +42,7 @@ class OpenDocumentPlugin : FlutterPlugin, ActivityAware {
       return
     }
     doc.let {
-      it?.setActivity(binding.activity as FlutterActivity)
+      it?.setActivity(binding.activity)
     }
   }
 

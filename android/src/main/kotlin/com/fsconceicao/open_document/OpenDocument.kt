@@ -1,5 +1,6 @@
 package com.fsconceicao.open_document
 
+import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -9,17 +10,16 @@ import android.os.Build
 import android.os.Environment
 import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
-import io.flutter.embedding.android.FlutterActivity
 import io.flutter.plugin.common.MethodChannel
 import java.io.File
 
 
-class OpenDocument(context: Context, activity: FlutterActivity?) {
+class OpenDocument(context: Context, activity: Activity?) {
     private val applicationContext = context
-    private var activity: FlutterActivity? = activity
+    private var activity: Activity? = activity
 
 
-    fun setActivity(activity: FlutterActivity) {
+    fun setActivity(activity: Activity) {
         this.activity = activity
     }
 
@@ -27,10 +27,10 @@ class OpenDocument(context: Context, activity: FlutterActivity?) {
     internal fun openDocument(url: String, result: MethodChannel.Result) {
         try {
 
-            val type = getFileType(name(url).split(".")[1])
+            val type = getFileType(name(url).substringAfterLast("."))
             val intent = Intent(Intent.ACTION_VIEW)
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addCategory("android.intent.category.DEFAULT")
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -44,6 +44,7 @@ class OpenDocument(context: Context, activity: FlutterActivity?) {
             }
 
             this.activity?.startActivity(intent)
+            result.success(null)
         } catch (e: ActivityNotFoundException) {
             e.printStackTrace()
             result.error("Error", e.localizedMessage, "Open document failure")
