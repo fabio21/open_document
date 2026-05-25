@@ -6,7 +6,8 @@ import 'open_document_platform_interface.dart';
 ///- It has the power to open the zip creating a new folder with
 /// the name of the file using the plugin [Archive]
 class OpenDocument {
-  /// - Open the document by the indicated path [filePath],
+  /// - Open the document by the indicated path [filePath].
+  /// - On Android and Windows, this dispatches the file to a compatible installed app.
   static Future<void> openDocument({required String filePath}) async {
     return await OpenDocumentPlatform.instance.openDocument(filePath: filePath);
   }
