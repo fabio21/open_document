@@ -12,6 +12,7 @@ import androidx.core.content.FileProvider
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.plugin.common.MethodChannel
 import java.io.File
+import java.util.Locale
 
 
 class OpenDocument(context: Context, activity: FlutterActivity?) {
@@ -25,14 +26,15 @@ class OpenDocument(context: Context, activity: FlutterActivity?) {
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     internal fun openDocument(url: String, result: MethodChannel.Result) {
+        val fileName = name(url)
+        val extension = fileName.substringAfterLast('.', "").lowercase(Locale.ROOT)
+        val type = if (extension.isNotEmpty()) getFileType(extension) else "*/*"
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        intent.addCategory("android.intent.category.DEFAULT")
+
         try {
-
-            val type = getFileType(name(url).split(".")[1])
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            intent.addCategory("android.intent.category.DEFAULT")
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 val uri = FileProvider.getUriForFile(
                     applicationContext,
@@ -42,12 +44,33 @@ class OpenDocument(context: Context, activity: FlutterActivity?) {
             } else {
                 intent.setDataAndType(Uri.fromFile(File(url)), type)
             }
-
-            this.activity?.startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
+        } catch (e: Exception) {
             e.printStackTrace()
-            result.error("Error", e.localizedMessage, "Open document failure")
-            // Instruct the user to install a PDF reader here, or something
+            result.error("Error", e.localizedMessage, "Failed to prepare document for opening")
+            return
+        }
+
+        val currentActivity = this.activity
+        if (currentActivity == null) {
+            result.error("Error", "Activity is null", "Open document failure")
+            return
+        }
+
+        currentActivity.runOnUiThread {
+            try {
+                currentActivity.startActivity(intent)
+                result.success(null)
+            } catch (e: ActivityNotFoundException) {
+                e.printStackTrace()
+                result.error(
+                    "Error",
+                    "No app found to open this file type. Install a compatible viewer.",
+                    "Open document failure"
+                )
+            } catch (e: Exception) {
+                e.printStackTrace()
+                result.error("Error", e.localizedMessage, "Open document failure")
+            }
         }
     }
 

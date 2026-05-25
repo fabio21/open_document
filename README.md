@@ -8,6 +8,9 @@ Used to create a folder on the user's mobile phone and Desktop;
 
 ---
 ## Opening pdf, xlsx, docs, ppt and zip files
+
+> On Android and Windows this plugin uses apps installed on the device/system to open files.
+> For `.docx` and other formats, make sure a compatible viewer is installed.
 ---
 
 ## Getting Started
