@@ -1,3 +1,5 @@
+## 1.0.8
+- update `intl` dependency to `^0.19.0` for newer Flutter localization compatibility
 ## 1.0.7
 - updating package versions
     *  archive: ^3.3.7
